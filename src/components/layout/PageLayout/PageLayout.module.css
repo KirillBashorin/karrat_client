@@ -1,0 +1,9 @@
+.root {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: min-content 1fr min-content;
+  font-weight: 400;
+  background-color: var(--background);
+  color: var(--basic);
+  overflow-x: hidden;
+}

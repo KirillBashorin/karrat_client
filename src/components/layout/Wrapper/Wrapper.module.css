@@ -1,0 +1,7 @@
+.root {
+  margin: 0 auto;
+  min-width: 320px;
+  max-width: 1440px;
+  box-sizing: border-box;
+  padding: 0 var(--padding-x);
+}

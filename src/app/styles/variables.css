@@ -1,0 +1,26 @@
+:root {
+  --background: #fff;
+  --basic: #000;
+  --padding-x: 15px;
+  --padding-y: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --padding-x: 30px;
+    --padding-y: 40px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --padding-x: 60px;
+    --padding-y: 60px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  :root {
+    --padding-x: 120px;
+  }
+}
