@@ -11,6 +11,9 @@ const nextConfig = {
 
     return config;
   },
+  sassOptions: {
+    prependData: `@use "/src/styles/mixins.scss";`,
+  }
 };
 
 module.exports = nextConfig;
