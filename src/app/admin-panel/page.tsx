@@ -1,8 +1,10 @@
 'use client';
+
 import React, { FC } from 'react';
 import { useReadContract, useWriteContract, useWalletClient } from 'wagmi';
 
-import Wrapper from '@/components/layout/Wrapper';
+import { Wrapper } from '@/components/layout';
+import { WalletConnectButton } from '@/components/common';
 
 const AdminPanel: FC = () => {
   const {
@@ -291,7 +293,9 @@ const AdminPanel: FC = () => {
 
   return (
     <section>
-      <Wrapper>admin panel page</Wrapper>
+      <Wrapper>
+        admin panel page <WalletConnectButton />
+      </Wrapper>
     </section>
   );
 };
