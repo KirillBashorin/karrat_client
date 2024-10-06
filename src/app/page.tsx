@@ -1,14 +1,15 @@
 import React, { FC } from 'react';
-import Link from 'next/link';
 
 import { Wrapper } from '@/components/layout';
+
+import styles from './page.module.scss';
 
 const Home: FC = () => {
   return (
     <>
       <section>
         <Wrapper>
-          <Link href='/admin-panel'>Admin panel</Link>
+          <div className={styles.test}>123</div>
         </Wrapper>
       </section>
     </>

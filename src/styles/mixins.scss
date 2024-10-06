@@ -1,0 +1,82 @@
+@mixin shadow {
+  box-shadow: $shadow;
+}
+
+@mixin border {
+  border: 1px solid $grey-700;
+}
+
+@mixin card {
+  @include shadow;
+  @include border;
+
+  background: $grey-800;
+}
+
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin focus {
+  &:focus-visible {
+    @content;
+  }
+}
+
+@mixin hover-focus {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+
+  &:focus-visible {
+    @content;
+  }
+}
+
+@mixin active {
+  &:active {
+    @content;
+  }
+}
+
+@mixin vp-tablet {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin vp-tablet-landscape {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin vp-desktop {
+  @media screen and (min-width: 1320px) {
+    @content;
+  }
+}
+
+//@mixin scrollbar {
+//  scrollbar-width: thin;
+//  scrollbar-color: $border-fill transparent;
+//
+//  &::-webkit-scrollbar {
+//    width: 8px;
+//  }
+//
+//  &::-webkit-scrollbar-track {
+//    background: transparent;
+//  }
+//
+//  &::-webkit-scrollbar-thumb {
+//    background-color: $border-fill;
+//    border-radius: 10px;
+//  }
+//}

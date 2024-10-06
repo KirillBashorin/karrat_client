@@ -1,26 +1,48 @@
-:root {
-  --background: #fff;
-  --basic: #000;
-  --padding-x: 15px;
-  --padding-y: 30px;
-}
+@use 'mixins';
 
-@media screen and (min-width: 768px) {
-  :root {
-    --padding-x: 30px;
-    --padding-y: 40px;
-  }
-}
+$font: "Manrope", "Arial", sans-serif;
+$font-s: 12px;
+$font-m: 16px;
+$font-l: 20px;
+$font-xl: 24px;
+$font-2xl: 30px;
+$font-3xl: 36px;
+$font-4xl: 48px;
+$font-5xl: 60px;
 
-@media screen and (min-width: 1024px) {
-  :root {
-    --padding-x: 60px;
-    --padding-y: 60px;
-  }
-}
+// leading
+$leading-n: 100%;
+$leading-xs: 111%;
+$leading-s: 120%;
+$leading-m: 133%;
+$leading-l: 140%;
+$leading-xl: 156%;
 
-@media screen and (min-width: 1440px) {
-  :root {
-    --padding-x: 120px;
-  }
-}
+
+$white: #fff;
+$grey-200: #e5e7eb;
+$grey-400: #9ca3af;
+$grey-600: #52525b;
+$grey-700: #3f3f46;
+$grey-800: #27272a;
+$accent: #6366f1;
+
+$primary-gradient: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+$accent-gradient: linear-gradient(135deg, #14b8a6 0%, #0891b2 100%);
+
+$shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+$min-width: 375px;
+
+$br-xs: 12px;
+$br-s: 16px;
+$br-m: 24px;
+$br-l: 30px;
+
+$indent-3xs: 8px;
+$indent-2xs: 10px;
+$indent-xs: 16px;
+$indent-s: 24px;
+$indent-m: 32px;
+$indent-l: 40px;
+$indent-xl: 64px;
