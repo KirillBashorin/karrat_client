@@ -1,7 +1,7 @@
 import React, { FC, Suspense, StrictMode } from 'react';
 import { Inter } from 'next/font/google';
 
-import Web3ModalProvider from '@/providers/Web3modalProvider';
+import { Web3ModalProvider } from '@/providers';
 
 import type { Metadata } from 'next';
 

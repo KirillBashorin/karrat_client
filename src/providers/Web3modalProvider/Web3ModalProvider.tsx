@@ -1,13 +1,10 @@
 'use client';
 
 import React, { FC } from 'react';
-
 import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
 import { hardhat } from 'wagmi/chains';
-
 import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
 import { WagmiProvider } from 'wagmi';
 
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
