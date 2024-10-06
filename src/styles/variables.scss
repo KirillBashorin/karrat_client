@@ -10,16 +10,16 @@ $font-3xl: 36px;
 $font-4xl: 48px;
 $font-5xl: 60px;
 
-// leading
 $leading-n: 100%;
 $leading-xs: 111%;
 $leading-s: 120%;
 $leading-m: 133%;
 $leading-l: 140%;
-$leading-xl: 156%;
+$leading-xl: 150%;
 
 
 $white: #fff;
+$grey-100: #f3f4f6;;
 $grey-200: #e5e7eb;
 $grey-400: #9ca3af;
 $grey-600: #52525b;
@@ -46,3 +46,6 @@ $indent-s: 24px;
 $indent-m: 32px;
 $indent-l: 40px;
 $indent-xl: 64px;
+
+$tr-default: 0.3s ease-in-out;
+$tr-all-default: all 0.3s ease-in-out;

@@ -10,6 +10,7 @@
   @include shadow;
   @include border;
 
+  border-radius: $br-m;
   background: $grey-800;
 }
 

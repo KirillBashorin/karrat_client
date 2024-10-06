@@ -1,0 +1,38 @@
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: $br-m;
+  background: $primary-gradient;
+  border: 1px solid transparent;
+  color: $grey-100;
+  font-size: $font-m;
+  line-height: $leading-xl;
+  font-weight: 300;
+  transition: $tr-all-default;
+
+  &.transparent {
+    background: transparent;
+    color: $grey-400;
+    border: 1px solid $grey-400;
+  }
+
+  @include hover-focus {
+    color: $white;
+
+    &.transparent {
+      border: 1px solid $white;
+    }
+  }
+
+  @include active {
+    color: rgba($white, 0.6);
+
+    &.transparent {
+      color: rgba($white, 0.4);
+      border: 1px solid rgba($white, 0.4);
+    }
+  }
+}
