@@ -1,14 +1,14 @@
 import React, { FC, Suspense, StrictMode } from 'react';
-import { Inter } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 
 // import { Web3ModalProvider } from '@/providers';
-import { Header } from '@/components/layout';
+import { Header, Footer } from '@/components/layout';
 
 import type { Metadata } from 'next';
 
 import '@/styles/global.scss';
 
-const inter = Inter({ subsets: ['latin'] });
+const manrope = Manrope({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Karrat',
@@ -22,12 +22,13 @@ interface IRootLayoutProps {
 const RootLayout: FC<IRootLayoutProps> = ({ children }) => {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body className={manrope.className}>
         <StrictMode>
           <Suspense fallback='Loading...'>
             {/*<Web3ModalProvider>*/}
             <Header />
-            {children}
+            <main>{children}</main>
+            <Footer />
             {/*</Web3ModalProvider>*/}
           </Suspense>
         </StrictMode>
