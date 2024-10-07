@@ -5,7 +5,7 @@ const Home: FC = () => {
   return (
     <>
       <section>
-        <Wrapper></Wrapper>
+        <Wrapper>123</Wrapper>
       </section>
     </>
   );

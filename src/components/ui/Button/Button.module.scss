@@ -12,6 +12,7 @@
   line-height: $leading-xl;
   font-weight: 300;
   transition: $tr-all-default;
+  background-size: 150% 150%;
 
   &.transparent {
     background: transparent;
@@ -21,6 +22,7 @@
 
   @include hover-focus {
     color: $white;
+    background-position: 50%;
 
     &.transparent {
       border: 1px solid $white;

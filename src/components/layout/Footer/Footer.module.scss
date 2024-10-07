@@ -1,0 +1,91 @@
+.root {
+  background-color: $grey-800;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: $indent-m;
+  padding: $indent-l 0;
+
+  @include vp-tablet-landscape {
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    justify-content: space-between;
+  }
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: $indent-m;
+}
+
+.linksWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $indent-l;
+}
+
+.link {
+  color: $grey-400;
+  font-size: $font-m;
+  line-height: $leading-xl;
+  font-weight: 300;
+  transition: $tr-all-default;
+
+  @include hover-focus {
+    color: $white;
+  }
+
+  @include active {
+    opacity: 0.6;
+  }
+}
+
+.contacts {
+  color: $grey-400;
+  display: flex;
+  flex-direction: column;
+  gap: $indent-5xs;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: $indent-4xs;
+  font-size: $font-m;
+  line-height: $leading-xl;
+  font-weight: 300;
+  transition: $tr-all-default;
+  width: fit-content;
+
+  & svg {
+    color: $grey-200;
+    width: 20px;
+    height: 20px;
+    transition: $tr-all-default;
+  }
+}
+
+a.contactItem {
+  @include hover-focus {
+    color: $white;
+
+    & svg {
+      color: $white;
+    }
+  }
+
+  @include active {
+    opacity: 0.6;
+  }
+}
+
+.privacy {
+  color: $grey-400;
+  font-size: $font-m;
+  line-height: $leading-xl;
+  font-weight: 300;
+}

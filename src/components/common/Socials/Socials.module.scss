@@ -1,0 +1,61 @@
+.root {
+  display: flex;
+  gap: $indent-4xs;
+
+  @include vp-tablet {
+    gap: $indent-2xs;
+  }
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $primary-gradient;
+  border-radius: $br-m;
+  width: 50px;
+  height: 42px;
+  border: 1px solid $border-accent;
+  transition: $tr-all-default;
+  background-size: 150% 150%;
+  color: $white;
+
+  & svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  @include hover-focus {
+    background-position: 50%;
+  }
+
+  @include active {
+    opacity: 0.6;
+  }
+}
+
+.root.transparent {
+  gap: $indent-s;
+
+  .link {
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid $grey-200;
+    color: $grey-200;
+
+    & svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    @include hover-focus {
+      border: 1px solid $white;
+      color: $white;
+    }
+
+    @include active {
+      opacity: 0.6;
+    }
+  }
+}

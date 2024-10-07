@@ -8,7 +8,7 @@ import { Wrapper } from '@/components/layout';
 import { Logo } from '@/components/common';
 import { Button } from '@/components/ui';
 
-import ArrowCircleSVG from '/public/images/arrow-circle.svg';
+import ArrowCircleSVG from '/public/images/icons/arrow-circle.svg';
 
 import styles from './Header.module.scss';
 

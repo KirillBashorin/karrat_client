@@ -6,7 +6,7 @@ import LogoSVG from '/public/images/logo.svg';
 import styles from './Logo.module.scss';
 
 interface LogoProps {
-  size?: 'normal | big';
+  size?: 'normal' | 'big';
 }
 
 const Logo: FC<LogoProps> = ({ size = 'normal' }) => {
