@@ -20,12 +20,22 @@
     border: 1px solid $grey-400;
   }
 
+  &.transparent.bright {
+    color: $white;
+    border: 1px solid $white;
+  }
+
   @include hover-focus {
     color: $white;
     background-position: 50%;
 
     &.transparent {
       border: 1px solid $white;
+    }
+
+    &.transparent.bright {
+      color: $grey-400;
+      border: 1px solid $grey-400;
     }
   }
 

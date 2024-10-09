@@ -1,0 +1,163 @@
+.root {
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    background: rgba(24, 24, 27, 0.7);
+
+    @include vp-tablet {
+      background: linear-gradient(-90deg, #18181b 0%, 100%);
+    }
+  }
+}
+
+.inner {
+  z-index: 1;
+  position: relative;
+  padding: 96px 0 186px;
+
+  @include vp-tablet {
+    padding: 172px 0 172px;
+  }
+}
+
+.info {
+  max-width: 450px;
+}
+
+.info.centered {
+  margin: 0 auto;
+  max-width: 500px;
+
+  .title,
+  .subtitle,
+  .text {
+    text-align: center;
+  }
+}
+
+.title {
+  margin-bottom: $indent-m;
+  white-space: pre-wrap;
+}
+
+.subtitle {
+  color: $white;
+  font-size: $font-l;
+  line-height: $leading-l;
+  font-weight: 200;
+  margin-bottom: $indent-2xs;
+  white-space: pre-wrap;
+
+  @include vp-tablet {
+    font-size: $font-xl;
+    line-height: $leading-m;
+  }
+}
+
+.text {
+  color: $white;
+  font-size: $font-s;
+  line-height: $leading-l;
+  font-weight: 300;
+  margin-bottom: $indent-m;
+  white-space: pre-wrap;
+
+  @include vp-tablet {
+    font-size: $font-m;
+    line-height: $leading-xl;
+  }
+}
+
+.buttonsWrapper {
+  display: flex;
+  align-items: center;
+  gap: $indent-3xs;
+}
+
+.buttonsWrapper.centered {
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.button {
+  height: 42px;
+
+  & svg {
+    width: 24px;
+    height: 24px;
+    margin-left: 14px;
+  }
+}
+
+.socials {
+  @include vp-tablet-landscape {
+    position: absolute;
+    bottom: 50px;
+    right: 0;
+  }
+}
+
+.vector {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+
+.vector0 {
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  @include vp-tablet {
+    right: 0;
+    left: auto;
+    width: 800px;
+  }
+
+  @include vp-tablet-landscape {
+    width: 1166px;
+  }
+}
+
+.vector1 {
+  bottom: -50px;
+  right: 0;
+  left: 0;
+
+  @include vp-tablet {
+    bottom: 34px;
+    right: 18px;
+    left: auto;
+    width: 800px;
+  }
+
+  @include vp-tablet-landscape {
+    width: 919px;
+  }
+}
+
+.vector2 {
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.socialsDesktopOnly {
+  display: none;
+
+  @include vp-tablet-landscape {
+    display: flex;
+  }
+}

@@ -1,10 +1,6 @@
 .root {
   display: flex;
-  gap: $indent-4xs;
-
-  @include vp-tablet {
-    gap: $indent-2xs;
-  }
+  gap: $indent-3xs;
 }
 
 .link {

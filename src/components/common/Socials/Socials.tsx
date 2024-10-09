@@ -11,11 +11,12 @@ import YoutubeTransparentIcon from '/public/images/icons/youtube-tr.svg';
 import styles from './Socials.module.scss';
 
 interface SocialsProps {
+  className?: string;
   list: ('discord' | 'telegram' | 'whatsapp' | 'viber' | 'youtube')[];
   isTransparent?: boolean;
 }
 
-const Socials: FC<SocialsProps> = ({ list, isTransparent }) => {
+const Socials: FC<SocialsProps> = ({ className, list, isTransparent }) => {
   const socials = {
     ['discord']: {
       link: '#',
@@ -55,7 +56,7 @@ const Socials: FC<SocialsProps> = ({ list, isTransparent }) => {
   };
 
   return (
-    <ul className={clsx(styles.root, isTransparent && styles.transparent)}>
+    <ul className={clsx(className, styles.root, isTransparent && styles.transparent)}>
       {list &&
         list.length > 0 &&
         list.map(item => {

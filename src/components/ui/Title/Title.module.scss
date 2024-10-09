@@ -1,0 +1,29 @@
+.root {
+  color: $white;
+  line-height: $leading-n;
+  font-weight: 300;
+}
+
+.big {
+  font-size: $font-4xl;
+
+  @include vp-tablet {
+    font-size: $font-5xl;
+  }
+}
+
+.medium {
+  font-size: $font-2xl;
+
+  @include vp-tablet {
+    font-size: $font-3xl;
+  }
+}
+
+.small {
+  font-size: $font-l;
+
+  @include vp-tablet {
+    font-size: $font-xl;
+  }
+}
