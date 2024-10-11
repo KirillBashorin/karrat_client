@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Hero } from '@/components/common';
+import { Faq, Hero } from '@/components/common';
 
 const Home: FC = () => {
   return (
@@ -16,6 +16,8 @@ const Home: FC = () => {
         backgroundSrc={'/images/home-hero.jpg'}
         vectorVariant={0}
       />
+
+      <Faq />
     </>
   );
 };

@@ -1,0 +1,61 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: $indent-l;
+}
+
+.opened {
+  .itemWrapper {
+    grid-template-rows: 1fr;
+  }
+
+  .itemButton svg {
+    transform: rotate(-180deg);
+  }
+}
+
+.itemButton {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid $grey-200;
+  padding: $indent-4xs 0 $indent-2xs;
+
+  & svg {
+    width: 24px;
+    height: 24px;
+    transition: $tr-all-default;
+  }
+
+  @include vp-tablet {
+    font-size: $font-xl;
+    line-height: $leading-m;
+  }
+}
+
+.itemTitle {
+  color: $white;
+}
+
+.itemWrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms ease;
+  overflow: hidden;
+}
+
+.itemContent {
+  overflow: hidden;
+}
+
+.itemText {
+  color: $grey-400;
+  font-size: $font-m;
+  line-height: $leading-xl;
+  white-space: pre-wrap;
+  padding-top: $indent-4xs;
+}

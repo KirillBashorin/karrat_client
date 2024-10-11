@@ -1,0 +1,19 @@
+.root {
+  background-color: $grey-900;
+}
+
+.inner {
+  padding: $indent-l 0;
+
+  @include vp-tablet {
+    padding: $indent-xl 0;
+  }
+}
+
+.title {
+  margin-bottom: $indent-m;
+
+  @include vp-tablet {
+    margin-bottom: $indent-l;
+  }
+}
