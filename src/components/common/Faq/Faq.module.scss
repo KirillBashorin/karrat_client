@@ -3,10 +3,10 @@
 }
 
 .inner {
-  padding: $indent-l 0;
+  padding: $indent-l 0 $indent-l * 2;
 
   @include vp-tablet {
-    padding: $indent-xl 0;
+    padding: $indent-xl 0 $indent-xl * 2;
   }
 }
 
