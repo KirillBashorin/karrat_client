@@ -18,6 +18,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  gap: $indent-4xs;
   width: 100%;
   cursor: pointer;
   background: transparent;
@@ -26,6 +27,7 @@
   padding: $indent-4xs 0 $indent-2xs;
 
   & svg {
+    flex-shrink: 0;
     width: 24px;
     height: 24px;
     transition: $tr-all-default;
@@ -39,12 +41,13 @@
 
 .itemTitle {
   color: $white;
+  text-align: start;
 }
 
 .itemWrapper {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 300ms ease;
+  transition: grid-template-rows $tr-default;
   overflow: hidden;
 }
 
