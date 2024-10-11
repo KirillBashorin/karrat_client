@@ -3,5 +3,6 @@ import Logo from './Logo/Logo';
 import Socials from './Socials/Socials';
 import Hero from './Hero/Hero';
 import Faq from './Faq/Faq';
+import Support from './Support/Support';
 
-export { WalletConnectButton, Logo, Socials, Hero, Faq };
+export { WalletConnectButton, Logo, Socials, Hero, Faq, Support };

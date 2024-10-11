@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Faq, Hero } from '@/components/common';
+import { Faq, Hero, Support } from '@/components/common';
 
 const Home: FC = () => {
   return (
@@ -18,6 +18,8 @@ const Home: FC = () => {
       />
 
       <Faq />
+
+      <Support isDark={true} isVector={true} />
     </>
   );
 };

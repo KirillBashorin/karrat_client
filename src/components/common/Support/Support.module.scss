@@ -1,0 +1,112 @@
+.root {
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+
+  &::before {
+    z-index: 0;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(180deg, #18181b 0%, rgba(24, 24, 27, 0.49) 97.08%);
+  }
+}
+
+.dark {
+  &::before {
+    background: linear-gradient(180deg, #18181b 0%, rgba(24, 24, 27, 0.85) 97.08%);
+  }
+}
+
+.inner {
+  z-index: 1;
+  position: relative;
+  padding: 61px 22px;
+
+  @include vp-tablet {
+    padding: 88px 0;
+  }
+}
+
+.card {
+  @include card;
+
+  padding: $indent-xs;
+  max-width: 328px;
+  margin: 0 auto;
+
+  @include vp-tablet {
+    padding: $indent-s;
+  }
+}
+
+.title {
+  color: $white;
+  font-size: $font-xl;
+  line-height: $leading-m;
+  text-align: center;
+  margin-bottom: $indent-2xs;
+
+  @include vp-tablet {
+    font-size: $font-3xl;
+    line-height: $leading-s;
+  }
+}
+
+.text {
+  color: $grey-400;
+  font-size: $font-s;
+  line-height: $leading-l;
+  margin-bottom: $indent-2xs;
+  text-align: center;
+  white-space: pre-wrap;
+
+  @include vp-tablet {
+    font-size: $font-m;
+    line-height: $leading-xl;
+  }
+}
+
+.buttonsWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $indent-4xs;
+
+  @include vp-tablet {
+    gap: $indent-2xs;
+  }
+}
+
+.button {
+  height: 42px;
+}
+
+.socials {
+  gap: $indent-4xs;
+
+  @include vp-tablet {
+    gap: $indent-2xs;
+  }
+}
+
+.vector {
+  display: none;
+
+  @include vp-tablet {
+    z-index: -1;
+    position: absolute;
+    top: -64px;
+    right: 0;
+    left: 0;
+    display: block;
+    margin: 0 auto;
+    width: 970px;
+    height: auto;
+  }
+}
