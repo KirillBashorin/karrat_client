@@ -1,0 +1,116 @@
+.root {
+  position: relative;
+  background-color: $grey-900;
+}
+
+.inner {
+  z-index: 1;
+  position: relative;
+  padding: $indent-l 0;
+
+  @include vp-tablet {
+    padding: $indent-xl 0;
+  }
+}
+
+.title {
+  margin-bottom: $indent-m;
+
+  @include vp-tablet {
+    margin-bottom: $indent-l;
+  }
+}
+
+.list {
+  counter-reset: item;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $indent-3xs;
+  max-width: 885px;
+  margin-bottom: $indent-m;
+
+  @include vp-tablet {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $indent-s;
+    margin-bottom: $indent-l;
+  }
+}
+
+.item {
+  @include card;
+
+  counter-increment: item;
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  align-items: center;
+  gap: $indent-5xs;
+  color: $grey-400;
+  font-size: $font-xs;
+  line-height: $leading-m;
+  font-weight: 400;
+  padding: $indent-5xs $indent-4xs;
+  min-height: 60px;
+
+  &::before {
+    content: counter(item);
+    color: $accent;
+    font-size: $font-2xl;
+    line-height: $leading-n;
+    font-weight: 200;
+    text-align: center;
+  }
+
+  &:last-child:nth-child(odd) {
+    grid-column: span 2;
+  }
+
+  @include vp-tablet {
+    grid-template-columns: 40px 1fr;
+    gap: $indent-2xs;
+    font-size: $font-m;
+    line-height: $leading-xl;
+    font-weight: 300;
+    padding: $indent-2xs;
+    min-height: 80px;
+
+    &::before {
+      font-size: $font-5xl;
+    }
+
+    &:last-child:nth-child(odd) {
+      grid-column: span 1;
+    }
+  }
+}
+
+.buttonsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $indent-4xs;
+
+  @include vp-tablet {
+    flex-direction: row;
+  }
+}
+
+.vector {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: none;
+  margin: auto 0;
+  width: 587px;
+  height: 599px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @include vp-tablet-landscape {
+    display: block;
+  }
+}
