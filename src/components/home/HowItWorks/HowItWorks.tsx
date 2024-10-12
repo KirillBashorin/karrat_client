@@ -21,10 +21,11 @@ const HowItWorks: FC = () => {
   return (
     <section className={styles.root}>
       <Wrapper>
-        <FadeOut className={styles.vector}>
-          <Image src={'/images/construction-vector-3.svg'} width={'587'} height={'599'} alt={''} />
-        </FadeOut>
         <div className={styles.inner}>
+          <FadeOut className={styles.vector}>
+            <Image src={'/images/construction-vector-3.svg'} width={'587'} height={'599'} alt={''} />
+          </FadeOut>
+
           <Title className={styles.title} size={'medium'} as={'h2'}>
             Simple steps to&nbsp;a&nbsp;stable&nbsp;income:
           </Title>
