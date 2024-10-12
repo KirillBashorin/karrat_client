@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { Wrapper } from '@/components/layout';
 import { Title, Button } from '@/components/ui';
-import { Socials } from '@/components/common';
+import { Socials, FadeOut } from '@/components/common';
 
 import styles from './Support.module.scss';
 
@@ -24,13 +24,9 @@ const Support: FC<SupportProps> = ({ title, text, isDark, isVector }) => {
       <Wrapper>
         <div className={styles.inner}>
           {isVector && (
-            <Image
-              className={styles.vector}
-              src={'/images/construction-vector-3.svg'}
-              width={'300'}
-              height={'100'}
-              alt={''}
-            />
+            <FadeOut className={styles.vector}>
+              <Image src={'/images/construction-vector-3.svg'} width={'300'} height={'100'} alt={''} />
+            </FadeOut>
           )}
 
           <div className={styles.card}>

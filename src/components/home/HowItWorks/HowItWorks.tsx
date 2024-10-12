@@ -2,10 +2,10 @@
 
 import React, { FC } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 
 import { Wrapper } from '@/components/layout';
 import { Button, Title } from '@/components/ui';
+import { FadeOut } from '@/components/common';
 
 import styles from './HowItWorks.module.scss';
 
@@ -21,21 +21,9 @@ const HowItWorks: FC = () => {
   return (
     <section className={styles.root}>
       <Wrapper>
-        <motion.div
-          className={styles.vector}
-          initial='hidden'
-          whileInView='visible'
-          transition={{
-            duration: 1,
-            ease: 'easeInOut',
-          }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1 },
-          }}
-        >
+        <FadeOut className={styles.vector}>
           <Image src={'/images/construction-vector-3.svg'} width={'587'} height={'599'} alt={''} />
-        </motion.div>
+        </FadeOut>
         <div className={styles.inner}>
           <Title className={styles.title} size={'medium'} as={'h2'}>
             Simple steps to&nbsp;a&nbsp;stable&nbsp;income:
@@ -45,24 +33,9 @@ const HowItWorks: FC = () => {
             {items &&
               items.length > 0 &&
               items.map((item, index) => (
-                <motion.li
-                  className={styles.item}
-                  initial='hidden'
-                  whileInView='visible'
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 1,
-                    delay: index * 0.3,
-                    ease: 'easeInOut',
-                  }}
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: { opacity: 1 },
-                  }}
-                  key={item}
-                >
+                <FadeOut className={styles.item} delay={index * 0.3} key={item}>
                   {item}
-                </motion.li>
+                </FadeOut>
               ))}
           </ol>
 

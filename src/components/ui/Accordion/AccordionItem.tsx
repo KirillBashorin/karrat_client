@@ -3,6 +3,7 @@
 import React, { FC, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 
+import { FadeOut } from '@/components/common';
 import { Title } from '@/components/ui';
 
 import TickIcon from '/public/images/icons/tick.svg';
@@ -50,7 +51,7 @@ const AccordionItem: FC<AccordionItemProps> = ({ isOpened, onClick, title, text 
   }, [isOpened]);
 
   return (
-    <li className={clsx(isOpened && styles.opened)} ref={itemRef}>
+    <FadeOut className={clsx(isOpened && styles.opened)} as={'li'} ref={itemRef}>
       <button className={styles.itemButton} type='button' onClick={handlerClick}>
         <Title className={styles.itemTitle} size={'small'} as={'h3'}>
           {title}
@@ -62,7 +63,7 @@ const AccordionItem: FC<AccordionItemProps> = ({ isOpened, onClick, title, text 
           <div className={styles.itemText}>{text}</div>
         </div>
       </div>
-    </li>
+    </FadeOut>
   );
 };
 
