@@ -1,5 +1,8 @@
+'use client';
+
 import React, { FC } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 import { Wrapper } from '@/components/layout';
 import { Button, Title } from '@/components/ui';
@@ -18,9 +21,21 @@ const HowItWorks: FC = () => {
   return (
     <section className={styles.root}>
       <Wrapper>
-        <div className={styles.vector}>
+        <motion.div
+          className={styles.vector}
+          initial='hidden'
+          whileInView='visible'
+          transition={{
+            duration: 1,
+            ease: 'easeInOut',
+          }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1 },
+          }}
+        >
           <Image src={'/images/construction-vector-3.svg'} width={'587'} height={'599'} alt={''} />
-        </div>
+        </motion.div>
         <div className={styles.inner}>
           <Title className={styles.title} size={'medium'} as={'h2'}>
             Simple steps to&nbsp;a&nbsp;stable&nbsp;income:
@@ -29,10 +44,25 @@ const HowItWorks: FC = () => {
           <ol className={styles.list}>
             {items &&
               items.length > 0 &&
-              items.map(item => (
-                <li className={styles.item} key={item}>
+              items.map((item, index) => (
+                <motion.li
+                  className={styles.item}
+                  initial='hidden'
+                  whileInView='visible'
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 1,
+                    delay: index * 0.3,
+                    ease: 'easeInOut',
+                  }}
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1 },
+                  }}
+                  key={item}
+                >
                   {item}
-                </li>
+                </motion.li>
               ))}
           </ol>
 
