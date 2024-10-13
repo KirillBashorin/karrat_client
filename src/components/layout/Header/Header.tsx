@@ -59,7 +59,7 @@ const Header: FC = () => {
   }, [isMenuOpened]);
 
   return (
-    <header className={clsx(styles.root, isScrolled && styles.scrolled)}>
+    <header className={styles.root}>
       <Wrapper>
         <div className={styles.inner}>
           <Logo />
