@@ -37,6 +37,7 @@
 }
 
 .itemButton {
+  color: $grey-200;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -47,12 +48,18 @@
   border: none;
   border-bottom: 1px solid $grey-200;
   padding: $indent-4xs 0 $indent-2xs;
+  transition: $tr-all-default;
 
   & svg {
     flex-shrink: 0;
     width: 24px;
     height: 24px;
     transition: $tr-all-default;
+  }
+
+  @include hover-focus {
+    color: $white;
+    border-bottom: 1px solid $white;
   }
 
   @include vp-tablet {
@@ -62,7 +69,7 @@
 }
 
 .itemTitle {
-  color: $grey-200;
+  color: inherit;
   font-weight: 200;
   text-align: start;
 }
