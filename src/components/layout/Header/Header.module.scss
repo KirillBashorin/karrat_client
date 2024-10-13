@@ -1,5 +1,14 @@
 .root {
+  z-index: 2;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: $grey-800;
+
+  @include vp-tablet-landscape {
+    position: static;
+  }
 }
 
 .inner {
@@ -8,6 +17,7 @@
   justify-content: space-between;
   align-items: center;
   padding: $indent-xs 0;
+  transition: $tr-all-default;
 
   @include vp-tablet {
     padding: 27px 0;
