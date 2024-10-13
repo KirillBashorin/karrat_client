@@ -22,7 +22,7 @@ const Home: FC = () => {
 
       <Faq />
 
-      <Support isDark={true} isVector={true} />
+      <Support />
     </>
   );
 };
