@@ -76,3 +76,26 @@ a {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
+.swiper-pagination {
+  .swiper-pagination-bullet {
+    opacity: 1;
+    width: 12px;
+    height: 12px;
+    background-color: $grey-800;
+    border: 1px solid $grey-700;
+    transition: $tr-all-default;
+    margin: 0 $indent-3xs;
+
+    @include hover-focus {
+      border: 1px solid $accent;
+    }
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: $accent;
+    border: 1px solid $accent;
+  }
+
+  cursor: default;
+}

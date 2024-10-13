@@ -6,5 +6,7 @@ import Faq from './Faq/Faq';
 import Support from './Support/Support';
 import FadeOut from './FadeOut/FadeOut';
 import TokenTypes from './TokenTypes/TokenTypes';
+import ObjectsSwiper from './ObjectsSwiper/ObjectsSwiper';
+import ObjectPreview from './ObjectPreview/ObjectPreview';
 
-export { WalletConnectButton, Logo, Socials, Hero, Faq, Support, FadeOut, TokenTypes };
+export { WalletConnectButton, Logo, Socials, Hero, Faq, Support, FadeOut, TokenTypes, ObjectsSwiper, ObjectPreview };

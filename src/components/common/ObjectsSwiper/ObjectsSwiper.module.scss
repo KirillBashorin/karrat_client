@@ -1,0 +1,15 @@
+.root {
+  cursor: grab;
+  padding-bottom: 48px;
+  margin-left: -$indent-xs;
+  margin-right: -$indent-xs;
+  padding-left: $indent-xs;
+
+  :global(.swiper-slide) {
+    width: auto;
+  }
+
+  @include vp-tablet-landscape {
+    padding-bottom: $indent-xl;
+  }
+}

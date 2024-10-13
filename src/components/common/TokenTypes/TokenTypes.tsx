@@ -22,9 +22,7 @@ interface TokenItemProps {
 
 const TokenItem: FC<TokenItemProps> = ({ title, text, badge }) => {
   const [isOpened, setIsOpened] = useState(false);
-  const [isWide, setIsWide] = useState(
-    typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches
-  );
+  const [isWide, setIsWide] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 1024px)');
@@ -32,6 +30,8 @@ const TokenItem: FC<TokenItemProps> = ({ title, text, badge }) => {
     const handleMediaChange = (event: MediaQueryListEvent) => {
       setIsWide(event.matches);
     };
+
+    setIsWide(mediaQuery.matches);
 
     mediaQuery.addEventListener('change', handleMediaChange);
 

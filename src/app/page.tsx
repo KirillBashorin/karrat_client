@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { Faq, Hero, Support, TokenTypes } from '@/components/common';
-import { ObjectStage, HowItWorks, AboutUs } from '@/components/home';
+import { ObjectStage, HowItWorks, AboutUs, PopularObjects } from '@/components/home';
 
 const Home: FC = () => {
   return (
@@ -23,6 +23,8 @@ const Home: FC = () => {
       <TokenTypes />
 
       <ObjectStage />
+
+      <PopularObjects />
 
       <HowItWorks />
 

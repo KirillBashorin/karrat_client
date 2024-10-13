@@ -15,6 +15,14 @@
   }
 }
 
+.small {
+  padding: 4px 12px;
+  font-weight: 300;
+  font-size: $font-m;
+  line-height: $leading-xl;
+  color: $grey-200;
+}
+
 .bright {
   background: $accent-gradient;
 }
