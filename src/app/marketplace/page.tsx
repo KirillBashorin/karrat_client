@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import { Hero, Support, TokenTypes } from '@/components/common';
+import { MarketObjectTabs } from '@/components/narketplace';
 
 const Market: FC = () => {
   return (
@@ -12,6 +13,8 @@ const Market: FC = () => {
         vectorVariant={1}
         button={{ text: 'Personal account' }}
       />
+
+      <MarketObjectTabs />
 
       <TokenTypes />
 

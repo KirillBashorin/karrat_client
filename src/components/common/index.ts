@@ -8,5 +8,18 @@ import FadeOut from './FadeOut/FadeOut';
 import TokenTypes from './TokenTypes/TokenTypes';
 import ObjectsSwiper from './ObjectsSwiper/ObjectsSwiper';
 import ObjectPreview from './ObjectPreview/ObjectPreview';
+import ObjectsGrid from './ObjectsGrid/ObjectsGrid';
 
-export { WalletConnectButton, Logo, Socials, Hero, Faq, Support, FadeOut, TokenTypes, ObjectsSwiper, ObjectPreview };
+export {
+  WalletConnectButton,
+  Logo,
+  Socials,
+  Hero,
+  Faq,
+  Support,
+  FadeOut,
+  TokenTypes,
+  ObjectsSwiper,
+  ObjectPreview,
+  ObjectsGrid,
+};

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import styles from './Badge.module.scss';
 
 interface BadgeProps extends PropsWithChildren {
-  className: string;
+  className?: string;
   isBright?: boolean;
   size?: 'medium' | 'small';
 }

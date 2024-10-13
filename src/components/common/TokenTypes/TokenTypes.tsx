@@ -106,7 +106,7 @@ const TokenTypes: FC = () => {
       <Wrapper>
         <div className={styles.inner}>
           <Title className={styles.title} size={'medium'} as={'h2'}>
-            Типы токенов
+            Token types
           </Title>
           <ul className={styles.list}>
             {items &&
