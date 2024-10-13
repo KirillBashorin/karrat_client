@@ -5,5 +5,6 @@ import Hero from './Hero/Hero';
 import Faq from './Faq/Faq';
 import Support from './Support/Support';
 import FadeOut from './FadeOut/FadeOut';
+import TokenTypes from './TokenTypes/TokenTypes';
 
-export { WalletConnectButton, Logo, Socials, Hero, Faq, Support, FadeOut };
+export { WalletConnectButton, Logo, Socials, Hero, Faq, Support, FadeOut, TokenTypes };

@@ -14,6 +14,28 @@
   }
 }
 
+.dark {
+  .itemButton {
+    color: $grey-600;
+    border-bottom: 1px solid $grey-600;
+  }
+
+  .itemTitle {
+    color: $grey-600;
+  }
+
+  &.opened {
+    .itemButton {
+      color: $grey-200;
+      border-bottom: 1px solid $grey-200;
+    }
+
+    .itemTitle {
+      color: $grey-200;
+    }
+  }
+}
+
 .itemButton {
   display: flex;
   align-items: flex-end;

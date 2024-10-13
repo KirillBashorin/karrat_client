@@ -1,0 +1,20 @@
+.root {
+  @include shadow;
+
+  color: $white;
+  font-size: $font-l;
+  line-height: $leading-l;
+  font-weight: 200;
+  background: $primary-gradient;
+  padding: $indent-4xs $indent-2xs;
+  border-radius: $br-m;
+
+  @include vp-tablet {
+    font-size: $font-xl;
+    line-height: $leading-m;
+  }
+}
+
+.bright {
+  background: $accent-gradient;
+}

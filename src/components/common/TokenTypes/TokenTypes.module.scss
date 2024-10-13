@@ -1,0 +1,169 @@
+.root {
+  position: relative;
+  overflow: hidden;
+  background-color: $grey-900;
+
+  @include vp-tablet-landscape {
+    overflow: visible;
+  }
+}
+
+.backgroundTop {
+  z-index: 0;
+  position: absolute;
+  top: $indent-l;
+  left: 0;
+  right: 0;
+  width: 790px;
+  height: auto;
+  transform: translateX(-20%);
+
+  @include vp-tablet-landscape {
+    top: -88px;
+    width: 100%;
+    height: 739px;
+    transform: translateX(0);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.backgroundBottom {
+  z-index: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 1114px;
+  height: auto;
+
+  &::before {
+    z-index: 1;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #18181b 0%, rgba(24, 24, 27, 0) 100%), linear-gradient(180deg, rgba(24, 24, 27, 0) 0%, #18181b 100%);
+  }
+
+  @include vp-tablet-landscape {
+    width: 100%;
+    height: 880px;
+    transform: translateX(0);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+  }
+}
+
+.inner {
+  z-index: 1;
+  position: relative;
+  padding: $indent-l 0 180px;
+
+  @include vp-tablet {
+    padding: $indent-xl 0;
+  }
+}
+
+.title {
+  margin-bottom: $indent-m;
+
+  @include vp-tablet {
+    margin-bottom: $indent-2xl;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $indent-s;
+
+  @include vp-tablet-landscape {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: end;
+    gap: 73px;
+    padding: 0 78px;
+  }
+}
+
+.item {
+  @include card;
+
+  padding: $indent-m;
+  height: fit-content;
+}
+
+.buttonsWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $indent-xs;
+  margin-bottom: $indent-xs;
+
+  @include vp-tablet {
+    margin-bottom: $indent-m;
+  }
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: $indent-3xs;
+  color: $grey-600;
+  font-size: $font-l;
+  line-height: $leading-l;
+  font-weight: 200;
+  transition: color $tr-default;
+
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  @include hover-focus {
+    color: $white;
+  }
+
+  @include active {
+    color: $grey-400;
+  }
+
+  @include vp-tablet {
+    font-size: $font-xl;
+    line-height: $leading-m;
+    font-weight: 300;
+  }
+}
+
+.itemTitle {
+  color: $grey-200;
+  font-weight: 200;
+  line-height: $leading-l;
+  margin-bottom: $indent-xs;
+
+  @include vp-tablet {
+    line-height: $leading-m;
+  }
+}
+
+.text {
+  color: $grey-400;
+  font-size: $font-m;
+  line-height: $leading-xl;
+  font-weight: 300;
+  white-space: pre-wrap;
+}

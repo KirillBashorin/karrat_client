@@ -15,9 +15,10 @@ interface AccordionItemProps {
   onClick: () => void;
   title: string;
   text: string;
+  isDark?: boolean;
 }
 
-const AccordionItem: FC<AccordionItemProps> = ({ isOpened, onClick, title, text }) => {
+const AccordionItem: FC<AccordionItemProps> = ({ isOpened, onClick, title, text, isDark }) => {
   const itemRef = useRef<HTMLLIElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -51,7 +52,7 @@ const AccordionItem: FC<AccordionItemProps> = ({ isOpened, onClick, title, text 
   }, [isOpened]);
 
   return (
-    <FadeOut className={clsx(isOpened && styles.opened)} as={'li'} ref={itemRef}>
+    <FadeOut className={clsx(isOpened && styles.opened, isDark && styles.dark)} as={'li'} ref={itemRef}>
       <button className={styles.itemButton} type='button' onClick={handlerClick}>
         <Title className={styles.itemTitle} size={'small'} as={'h3'}>
           {title}

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Faq, Hero, Support } from '@/components/common';
+import { Faq, Hero, Support, TokenTypes } from '@/components/common';
 import { ObjectStage, HowItWorks } from '@/components/home';
 
 const Home: FC = () => {
@@ -17,6 +17,8 @@ const Home: FC = () => {
         backgroundSrc={'/images/home-hero.jpg'}
         vectorVariant={0}
       />
+
+      <TokenTypes />
 
       <ObjectStage />
 
