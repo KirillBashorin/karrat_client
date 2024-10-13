@@ -6,6 +6,8 @@ import { Button, Title } from '@/components/ui';
 
 import ArrowCircleIcon from '/public/images/icons/arrow-circle.svg';
 
+import { FadeOut } from '@/components/common';
+
 import styles from './AboutUs.module.scss';
 
 const AboutUs: FC = () => {
@@ -67,11 +69,11 @@ const AboutUs: FC = () => {
               <ul className={styles.list}>
                 {list &&
                   list.length > 0 &&
-                  list.map(item => (
-                    <li className={styles.item} key={item.text}>
+                  list.map((item, index) => (
+                    <FadeOut className={styles.item} key={item.text} delay={index * 0.3} as={'li'}>
                       <span className={styles.itemValue}>{item.value}</span>
                       <span className={styles.itemText}>{item.text}</span>
-                    </li>
+                    </FadeOut>
                   ))}
               </ul>
             </div>

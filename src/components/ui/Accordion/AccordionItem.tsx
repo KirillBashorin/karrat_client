@@ -16,9 +16,10 @@ interface AccordionItemProps {
   title: string;
   text: string;
   isDark?: boolean;
+  as?: 'div' | 'li';
 }
 
-const AccordionItem: FC<AccordionItemProps> = ({ isOpened, onClick, title, text, isDark }) => {
+const AccordionItem: FC<AccordionItemProps> = ({ isOpened, onClick, title, text, isDark, as = 'li' }) => {
   const itemRef = useRef<HTMLLIElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -33,7 +34,9 @@ const AccordionItem: FC<AccordionItemProps> = ({ isOpened, onClick, title, text,
       if (!isOpened || !itemRef.current) return;
 
       const itemTop = itemRef.current.getBoundingClientRect().top;
-      const viewportHeight = window.innerHeight;
+      const viewportHeight = typeof window !== 'undefined' && window.innerHeight;
+
+      if (!viewportHeight) return;
 
       if (itemTop < 0 || itemTop > viewportHeight) {
         itemRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -52,7 +55,7 @@ const AccordionItem: FC<AccordionItemProps> = ({ isOpened, onClick, title, text,
   }, [isOpened]);
 
   return (
-    <FadeOut className={clsx(isOpened && styles.opened, isDark && styles.dark)} as={'li'} ref={itemRef}>
+    <FadeOut className={clsx(isOpened && styles.opened, isDark && styles.dark)} as={as} ref={itemRef}>
       <button className={styles.itemButton} type='button' onClick={handlerClick}>
         <Title className={styles.itemTitle} size={'small'} as={'h3'}>
           {title}

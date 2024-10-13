@@ -19,35 +19,35 @@ interface SocialsProps {
 const Socials: FC<SocialsProps> = ({ className, list, isTransparent }) => {
   const socials = {
     ['discord']: {
-      link: '#',
+      link: '#ds',
       icons: {
         default: <DiscordIcon />,
         transparent: <DiscordIcon />,
       },
     },
     ['telegram']: {
-      link: '#',
+      link: '#tg',
       icons: {
         default: <TelegramIcon />,
         transparent: <TelegramTransparentIcon />,
       },
     },
     ['whatsapp']: {
-      link: '#',
+      link: '#wa',
       icons: {
         default: <WhatsappTransparentIcon />,
         transparent: <WhatsappTransparentIcon />,
       },
     },
     ['viber']: {
-      link: '#',
+      link: '#vb',
       icons: {
         default: <ViberTransparentIcon />,
         transparent: <ViberTransparentIcon />,
       },
     },
     ['youtube']: {
-      link: '#',
+      link: '#yt',
       icons: {
         default: <YoutubeTransparentIcon />,
         transparent: <YoutubeTransparentIcon />,
