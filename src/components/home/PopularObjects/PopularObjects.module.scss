@@ -1,5 +1,19 @@
 .root {
+  position: relative;
   background-color: $grey-900;
+}
+
+.vector {
+  display: none;
+
+  @include vp-tablet-landscape {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 504px;
+    transform: translateY(-50%);
+  }
 }
 
 .inner {

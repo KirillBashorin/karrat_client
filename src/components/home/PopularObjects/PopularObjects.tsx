@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import Image from 'next/image';
 
 import { ObjectsSwiper } from '@/components/common';
 import { Wrapper } from '@/components/layout';
@@ -77,6 +78,13 @@ const PopularObjects: FC = () => {
 
   return (
     <section className={styles.root} id={'objects'}>
+      <Image
+        className={styles.vector}
+        src={'/images/construction-vector-6.svg'}
+        width={'300'}
+        height={'100'}
+        alt={' '}
+      />
       <Wrapper>
         <div className={styles.inner}>
           <Title className={styles.title} size={'medium'} as={'h2'}>
