@@ -93,7 +93,7 @@ const Header: FC = () => {
                   </Button>
                 </li>
                 <li>
-                  <Button className={styles.menuButton} href={'/marketplace/'} isTransparent={true}>
+                  <Button className={styles.menuButton} href={'/account/'} isTransparent={true}>
                     Account
                   </Button>
                 </li>
@@ -120,7 +120,7 @@ const Header: FC = () => {
               Marketplace
               <ArrowCircleSVG />
             </Button>
-            <Button href={'/marketplace/'} isTransparent={true}>
+            <Button href={'/account/'} isTransparent={true}>
               Account
             </Button>
           </div>
