@@ -31,7 +31,7 @@ const AboutUs: FC = () => {
   ];
 
   return (
-    <section className={styles.root}>
+    <section className={styles.root} id={'about'}>
       <Image
         className={styles.vector}
         src={'/images/construction-vector-5.png'}

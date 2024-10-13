@@ -34,7 +34,7 @@ const Faq: FC = () => {
   ];
 
   return (
-    <section className={styles.root}>
+    <section className={styles.root} id={'faq'}>
       <Wrapper>
         <div className={styles.inner}>
           <Title className={styles.title}>FAQ</Title>

@@ -76,7 +76,7 @@ const PopularObjects: FC = () => {
   ];
 
   return (
-    <section className={styles.root}>
+    <section className={styles.root} id={'objects'}>
       <Wrapper>
         <div className={styles.inner}>
           <Title className={styles.title} size={'medium'} as={'h2'}>
