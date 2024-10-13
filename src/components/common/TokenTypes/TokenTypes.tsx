@@ -44,7 +44,7 @@ const TokenItem: FC<TokenItemProps> = ({ title, text, badge }) => {
     <li className={styles.item}>
       <div className={styles.buttonsWrapper}>
         <Badge isBright={badge.isBright}>{badge.text}</Badge>
-        <Link className={styles.link} href={'/market/'}>
+        <Link className={styles.link} href={'/marketplace/'}>
           Market
           <ArrowCircleIcon />
         </Link>

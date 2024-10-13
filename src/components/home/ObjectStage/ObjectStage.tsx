@@ -28,7 +28,7 @@ const ObjectStage: FC = () => {
               bonuses from subsequent buyers at later stages, as well as much more benefits from rent. The only
               difference is time, good investments take time to materialize.
             </p>
-            <Button className={styles.button} href={'/market/'}>
+            <Button className={styles.button} href={'/marketplace/'}>
               Купить NFT
             </Button>
           </div>

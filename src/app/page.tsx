@@ -12,7 +12,7 @@ const Home: FC = () => {
         text={'Get guaranteed income from owning space \nfrom anywhere in the world'}
         button={{
           text: 'NFT catalog',
-          link: '/market/',
+          link: '/marketplace/',
         }}
         backgroundSrc={'/images/home-hero.jpg'}
         vectorVariant={0}

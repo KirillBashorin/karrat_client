@@ -14,10 +14,11 @@
     left: 0;
     z-index: 0;
     background: rgba(24, 24, 27, 0.7);
+  }
 
-    @include vp-tablet {
-      background: linear-gradient(-90deg, #18181b 0%, 100%);
-    }
+  @include vp-tablet {
+    background: linear-gradient(-90deg, #18181b 0%, 100%);
+    min-height: 700px;
   }
 }
 
