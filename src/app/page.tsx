@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { Faq, Hero, Support } from '@/components/common';
-import { HowItWorks } from '@/components/home';
+import { ObjectStage, HowItWorks } from '@/components/home';
 
 const Home: FC = () => {
   return (
@@ -17,6 +17,8 @@ const Home: FC = () => {
         backgroundSrc={'/images/home-hero.jpg'}
         vectorVariant={0}
       />
+
+      <ObjectStage />
 
       <HowItWorks />
 
