@@ -34,7 +34,7 @@ const ObjectsSwiper: FC<ObjectsSwiperProps> = ({ objects }) => {
         objects.length > 0 &&
         objects.map(item => (
           <SwiperSlide key={item.title}>
-            <ObjectPreview object={item} />
+            <ObjectPreview className={styles.preview} object={item} />
           </SwiperSlide>
         ))}
     </Swiper>

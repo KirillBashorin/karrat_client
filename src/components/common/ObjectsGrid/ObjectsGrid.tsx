@@ -38,7 +38,7 @@ const ObjectsGrid: FC<ObjectsGridProps> = ({ objects }) => {
         objects.length > 0 &&
         objects.map(item => (
           <SwiperSlide key={item.title}>
-            <ObjectPreview object={item} />
+            <ObjectPreview object={item} isSmall={true} />
           </SwiperSlide>
         ))}
     </Swiper>

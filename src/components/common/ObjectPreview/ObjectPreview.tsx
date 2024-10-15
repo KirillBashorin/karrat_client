@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import clsx from 'clsx';
 
 import { Badge, Title } from '@/components/ui';
 
@@ -11,12 +12,15 @@ import styles from './ObjectPreview.module.scss';
 import type { ObjectType } from '@/types';
 
 interface ObjectPreviewProps {
+  className?: string;
   object: ObjectType;
+  isSmall?: boolean;
 }
 
-const ObjectPreview: FC<ObjectPreviewProps> = ({ object }) => {
+const ObjectPreview: FC<ObjectPreviewProps> = ({ className, object, isSmall }) => {
+  console.log(isSmall);
   return (
-    <div className={styles.root}>
+    <div className={clsx(className, styles.root, isSmall && styles.small)}>
       <Image className={styles.image} src={object.image} width={'300'} height={'100'} alt={''} />
       <Badge className={styles.badge} isBright={object.type === 'rent'} size={'small'}>
         {object.type}

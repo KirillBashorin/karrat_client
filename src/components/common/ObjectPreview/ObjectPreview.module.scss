@@ -1,9 +1,71 @@
 .root {
   @include card;
 
-  width: 292px;
   position: relative;
   padding: $indent-2xs;
+}
+
+.root.small {
+  padding: $indent-5xs;
+  border-radius: $br-s;
+
+  .image {
+    border-radius: $br-m $br-xs $br-xs;
+    margin-bottom: 1px;
+  }
+
+  .badge {
+    top: $indent-5xs;
+    left: $indent-5xs;
+  }
+
+  .info {
+    display: block;
+  }
+
+  .title {
+    font-size: $font-m;
+    line-height: $leading-xl;
+    font-weight: 300;
+  }
+
+  .details {
+    font-size: $font-xs;
+  }
+
+  .download {
+    display: none;
+  }
+
+  @include vp-tablet {
+    padding: $indent-2xs;
+
+    .image {
+      border-radius: $br-s;
+    }
+
+    .badge {
+      top: $indent-2xs;
+      left: $indent-2xs;
+    }
+
+    .info {
+      display: grid;
+    }
+
+    .title {
+      font-size: $font-xl;
+      font-weight: 200;
+    }
+
+    .details {
+      font-size: $font-m;
+    }
+
+    .download {
+      display: flex;
+    }
+  }
 }
 
 .image {
