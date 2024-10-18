@@ -26,25 +26,29 @@
   }
 
   @include hover-focus {
-    color: $white;
-    background-position: 50%;
+    &:not(:disabled) {
+      color: $white;
+      background-position: 50%;
 
-    &.transparent {
-      border: 1px solid $white;
-    }
+      &.transparent {
+        border: 1px solid $white;
+      }
 
-    &.transparent.bright {
-      color: $grey-400;
-      border: 1px solid $grey-400;
+      &.transparent.bright {
+        color: $grey-400;
+        border: 1px solid $grey-400;
+      }
     }
   }
 
   @include active {
-    color: rgba($white, 0.6);
+    &:not(:disabled) {
+      color: rgba($white, 0.6);
 
-    &.transparent {
-      color: rgba($white, 0.4);
-      border: 1px solid rgba($white, 0.4);
+      &.transparent {
+        color: rgba($white, 0.4);
+        border: 1px solid rgba($white, 0.4);
+      }
     }
   }
 }

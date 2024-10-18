@@ -1,0 +1,54 @@
+.swiper {
+  padding-bottom: 72px;
+
+  @include vp-tablet {
+    padding-bottom: 88px;
+  }
+}
+
+.swiper :global(.swiper-pagination) {
+  z-index: 0;
+  bottom: 10px;
+  color: $grey-400;
+  font-size: $font-m;
+  line-height: $leading-xl;
+  font-weight: 300;
+}
+
+.navigation {
+  pointer-events: none;
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include vp-tablet {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+}
+
+.prev,
+.next {
+  pointer-events: auto;
+  gap: 10px;
+
+  &:disabled {
+    opacity: 0.4;
+  }
+
+  & svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.prev {
+  & svg {
+    transform: rotate(180deg);
+  }
+}
