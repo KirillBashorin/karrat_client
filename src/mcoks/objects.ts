@@ -7,7 +7,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'rent',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -15,7 +14,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'object',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -23,7 +21,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'rent',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -31,7 +28,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'object',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -39,7 +35,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'rent',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -47,7 +42,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'object',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -55,7 +49,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'rent',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -63,7 +56,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'object',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -71,7 +63,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'rent',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -79,7 +70,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'object',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -87,7 +77,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'rent',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -95,7 +84,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'object',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -103,7 +91,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'rent',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -111,7 +98,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'object',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -119,7 +105,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'rent',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -127,7 +112,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'object',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -135,7 +119,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'rent',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -143,7 +126,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'object',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -151,7 +133,6 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'rent',
-    file: '/images/preview.png',
   },
   {
     image: '/images/preview.png',
@@ -159,6 +140,5 @@ export const MockObjects: ObjectType[] = [
     price: 49.923,
     share: 1,
     type: 'object',
-    file: '/images/preview.png',
   },
 ];

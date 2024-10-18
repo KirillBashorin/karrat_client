@@ -4,5 +4,4 @@ export type ObjectType = {
   price: number;
   share: number;
   type: 'rent' | 'object';
-  file: string;
 };
