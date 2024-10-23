@@ -25,9 +25,9 @@ const ObjectPreview: FC<ObjectPreviewProps> = ({ className, object, isSmall }) =
         {object.title}
       </Title>
       <p className={styles.details}>
-        <span className={styles.price}>{object.price} usdt</span>
+        <span className={styles.price}>49.923 usdt</span>
         {' / '}
-        <span>{object.share} ft²</span>
+        <span>1 ft²</span>
       </p>
     </div>
   );

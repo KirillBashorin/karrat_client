@@ -1,7 +1,9 @@
 export type ObjectType = {
-  image: string;
-  title: string;
-  price: number;
-  share: number;
+  contractAddress: string;
   type: 'rent' | 'object';
+  image: string;
+  gallery: string[];
+  title: string;
+  description: string;
+  objectAddress: string;
 };

@@ -1,14 +1,25 @@
-import React, { FC } from 'react';
-import Image from 'next/image';
+'use client';
+
+import React, { FC, useEffect } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 
 import { ObjectsGrid } from '@/components/common';
 import { Wrapper } from '@/components/layout';
-import { MockObjects } from '@/mcoks/objects';
 import { Title } from '@/components/ui';
+import { useObjectsStore } from '@/stores';
 
 import styles from './MarketObjectTabs.module.scss';
 
 const MarketObjectTabs: FC = () => {
+  const { objectsList, getObjectsList } = useObjectsStore(
+    useShallow(state => ({ objectsList: state.objectsList, getObjectsList: state.getObjectsList }))
+  );
+
+  useEffect(() => {
+    getObjectsList();
+  }, []);
+
+  if (!objectsList) return null;
   return (
     <section className={styles.root}>
       <Wrapper>
@@ -18,7 +29,7 @@ const MarketObjectTabs: FC = () => {
               Objects
             </Title>
           </div>
-          <ObjectsGrid objects={MockObjects} />
+          <ObjectsGrid objects={objectsList} />
         </div>
       </Wrapper>
     </section>
