@@ -21,25 +21,25 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/37784886'],
 };
 
-const chains = [hardhat] as const;
-
-const config = defaultWagmiConfig({
-  chains,
-  projectId,
-  metadata,
-  ssr: true,
-});
-
-createWeb3Modal({
-  wagmiConfig: config,
-  projectId,
-});
-
 interface IWeb3ModalProviderProps {
   children: React.ReactNode;
 }
 
 const Web3ModalProvider: FC<IWeb3ModalProviderProps> = ({ children }) => {
+  const chains = [hardhat] as const;
+
+  const config = defaultWagmiConfig({
+    chains,
+    projectId,
+    metadata,
+    ssr: true,
+  });
+
+  createWeb3Modal({
+    wagmiConfig: config,
+    projectId,
+  });
+
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>

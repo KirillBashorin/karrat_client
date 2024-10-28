@@ -128,8 +128,28 @@
   }
 }
 
+.account {
+  display: flex;
+  gap: $indent-3xs;
+}
+
+.account .avatar {
+  margin-right: 10px;
+}
+
+.logout {
+  flex-shrink: 0;
+  min-width: 46px;
+  padding: $indent-5xs;
+
+  & svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
 .marketButton {
-  svg {
+  & svg {
     width: 24px;
     height: 24px;
     margin-left: 14px;

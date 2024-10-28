@@ -3,6 +3,11 @@
 import React, { FC, useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
+import { useAccount } from 'wagmi';
+import { useDisconnect } from 'wagmi';
+import { MetaMaskAvatar } from 'react-metamask-avatar';
+
+import LogoutIcon from '/public/images/icons/logout.svg';
 
 import { Wrapper } from '@/components/layout';
 import { Logo } from '@/components/common';
@@ -11,6 +16,32 @@ import { Button } from '@/components/ui';
 import ArrowCircleSVG from '/public/images/icons/arrow-circle.svg';
 
 import styles from './Header.module.scss';
+
+const AccountButton = () => {
+  const account = useAccount();
+  const { disconnect } = useDisconnect();
+
+  return (
+    <div className={styles.account}>
+      <Button href={'/account/'} isTransparent={true}>
+        {account.isConnected && (
+          <>
+            <MetaMaskAvatar className={styles.avatar} address={account.address || ''} size={24} />
+            <span>
+              {account.address?.slice(0, 4)}..{account.address?.slice(-4, -1)}
+            </span>
+          </>
+        )}
+        {!account.isConnected && 'Account'}
+      </Button>
+      {account.isConnected && (
+        <Button className={styles.logout} onClick={() => disconnect()} isTransparent={true}>
+          <LogoutIcon />
+        </Button>
+      )}
+    </div>
+  );
+};
 
 const Header: FC = () => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
@@ -93,9 +124,7 @@ const Header: FC = () => {
                   </Button>
                 </li>
                 <li>
-                  <Button className={styles.menuButton} href={'/account/'} isTransparent={true}>
-                    Account
-                  </Button>
+                  <AccountButton />
                 </li>
               </ul>
             </nav>
@@ -120,9 +149,7 @@ const Header: FC = () => {
               Marketplace
               <ArrowCircleSVG />
             </Button>
-            <Button href={'/account/'} isTransparent={true}>
-              Account
-            </Button>
+            <AccountButton />
           </div>
         </div>
       </Wrapper>

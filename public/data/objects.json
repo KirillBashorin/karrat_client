@@ -1,6 +1,6 @@
 [
   {
-    "contractAddress": "0x0000000000000000000000000000000000000000",
+    "contractAddress": "0x1343a97B3106C0C340772E37F3603F7eFF95Afff",
     "type": "rent",
     "image": "/images/preview.png",
     "gallery": ["/images/preview.png", "/images/preview.png", "/images/preview.png", "/images/preview.png", "/images/preview.png"],
@@ -9,7 +9,7 @@
     "objectAddress": "C17, JVT District 2, El Barsha South 5."
   },
   {
-    "contractAddress": "0x0000000000000000000000000000000000000000",
+    "contractAddress": "0xD3B99DF182711f176EDdC824210046FDE136197d",
     "type": "object",
     "image": "/images/preview.png",
     "gallery": ["/images/preview.png", "/images/preview.png", "/images/preview.png", "/images/preview.png", "/images/preview.png"],
