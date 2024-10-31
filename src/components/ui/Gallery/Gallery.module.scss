@@ -1,0 +1,28 @@
+.mainSwiper {
+  margin-bottom: $indent-5xs;
+}
+
+.image {
+  border-radius: $br-s;
+  aspect-ratio: 1.75;
+  object-fit: cover;
+
+  @include vp-tablet {
+    aspect-ratio: 1.46;
+  }
+}
+
+.thumbnail {
+  border-radius: $br-2xs;
+  aspect-ratio: 1;
+  object-fit: cover;
+
+  @include vp-tablet {
+    border-radius: $br-xs;
+  }
+}
+
+.activeThumbnail {
+  outline: 2px solid $accent;
+  outline-offset: -2px;
+}
