@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { useShallow } from 'zustand/react/shallow';
 import { useReadContract } from 'wagmi';
 import { formatEther } from 'viem';
+import { useAccount } from 'wagmi';
 
 import { Badge, Spinner, Title } from '@/components/ui';
 import { useModalStore } from '@/stores';
@@ -26,10 +27,19 @@ const ObjectPreview: FC<ObjectPreviewProps> = ({ className, object, isSmall }) =
     }))
   );
 
+  const account = useAccount();
+
   const oneSharePrice = useReadContract({
     address: object.contractAddress,
     abi: Object.abi,
     functionName: 'currentPriceOneShare',
+  });
+
+  const priceForCurrentUser = useReadContract({
+    address: object.contractAddress,
+    abi: Object.abi,
+    functionName: 'getPriceForUser',
+    args: [account.address],
   });
 
   return (
@@ -47,9 +57,14 @@ const ObjectPreview: FC<ObjectPreviewProps> = ({ className, object, isSmall }) =
       {oneSharePrice.isFetching && <Spinner className={styles.priceSpinner} />}
       {oneSharePrice.isSuccess && (
         <p className={styles.details}>
-          <span className={styles.price}>{formatEther(oneSharePrice.data as bigint)} usdt</span>
-          {' / '}
-          <span>1 ft²</span>
+          <span className={styles.price}>
+            {priceForCurrentUser.data
+              ? formatEther(priceForCurrentUser.data as bigint)
+              : formatEther(oneSharePrice.data as bigint)}
+            usdt
+          </span>
+
+          <span> / 1 ft²</span>
         </p>
       )}
     </div>
