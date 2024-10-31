@@ -1,8 +1,13 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
+import { useShallow } from 'zustand/react/shallow';
+import { useReadContract } from 'wagmi';
+import { formatEther } from 'viem';
 
-import { Badge, Title } from '@/components/ui';
+import { Badge, Spinner, Title } from '@/components/ui';
+import { useModalStore } from '@/stores';
+import { Object } from '@/contracts';
 
 import styles from './ObjectPreview.module.scss';
 
@@ -15,8 +20,23 @@ interface ObjectPreviewProps {
 }
 
 const ObjectPreview: FC<ObjectPreviewProps> = ({ className, object, isSmall }) => {
+  const { openPurchaseModal } = useModalStore(
+    useShallow(state => ({
+      openPurchaseModal: state.openPurchaseModal,
+    }))
+  );
+
+  const oneSharePrice = useReadContract({
+    address: object.contractAddress,
+    abi: Object.abi,
+    functionName: 'currentPriceOneShare',
+  });
+
   return (
-    <div className={clsx(className, styles.root, isSmall && styles.small)}>
+    <div
+      className={clsx(className, styles.root, isSmall && styles.small)}
+      onClick={() => openPurchaseModal(object.contractAddress)}
+    >
       <Image className={styles.image} src={object.image} width={'300'} height={'100'} alt={''} />
       <Badge className={styles.badge} isBright={object.type === 'rent'} size={'small'}>
         {object.type}
@@ -24,11 +44,14 @@ const ObjectPreview: FC<ObjectPreviewProps> = ({ className, object, isSmall }) =
       <Title className={styles.title} size={'small'} as={'h3'}>
         {object.title}
       </Title>
-      <p className={styles.details}>
-        <span className={styles.price}>49.923 usdt</span>
-        {' / '}
-        <span>1 ft²</span>
-      </p>
+      {oneSharePrice.isFetching && <Spinner className={styles.priceSpinner} />}
+      {oneSharePrice.isSuccess && (
+        <p className={styles.details}>
+          <span className={styles.price}>{formatEther(oneSharePrice.data as bigint)} usdt</span>
+          {' / '}
+          <span>1 ft²</span>
+        </p>
+      )}
     </div>
   );
 };

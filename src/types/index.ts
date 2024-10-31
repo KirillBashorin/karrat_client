@@ -1,5 +1,7 @@
+import { Address } from 'viem';
+
 export type ObjectType = {
-  contractAddress: string;
+  contractAddress: Address;
   type: 'rent' | 'object';
   image: string;
   gallery: string[];

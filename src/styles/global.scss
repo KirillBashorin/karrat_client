@@ -15,7 +15,8 @@ html {
   font-family: $font;
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
-  //scrollbar-gutter: stable;
+  scrollbar-gutter: stable;
+  background-color: $grey-900;
 }
 
 body {
@@ -23,8 +24,8 @@ body {
   flex-direction: column;
   min-height: 100vh;
   color: $white;
-  background-color: $accent;
   overflow-x: hidden;
+  background-color: $accent;
 }
 
 main {

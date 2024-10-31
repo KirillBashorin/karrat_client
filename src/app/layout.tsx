@@ -3,6 +3,7 @@ import { Manrope } from 'next/font/google';
 
 import { Web3ModalProvider } from '@/providers';
 import { Header, Footer } from '@/components/layout';
+import { PurchaseModal } from '@/components/common';
 
 import type { Metadata } from 'next';
 
@@ -27,7 +28,10 @@ const RootLayout: FC<IRootLayoutProps> = ({ children }) => {
           <Suspense fallback='Loading...'>
             <Web3ModalProvider>
               <Header />
-              <main>{children}</main>
+              <main>
+                {children}
+                <PurchaseModal />
+              </main>
               <Footer />
             </Web3ModalProvider>
           </Suspense>

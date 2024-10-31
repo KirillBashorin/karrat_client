@@ -1,0 +1,316 @@
+.root {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($grey-900, 0.8);
+}
+
+.opened {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeout $tr-default;
+}
+
+.inner {
+  @include card;
+
+  display: flex;
+  flex-direction: column;
+  gap: $indent-2xs;
+  max-width: 884px;
+  width: 100%;
+  padding: $indent-3xs;
+  animation: slideIn $tr-default;
+
+  @include vp-tablet {
+    padding: $indent-s;
+
+    display: grid;
+    grid-template-columns: 400px 1fr;
+  }
+
+  @include vp-tablet-landscape {
+    grid-template-columns: 500px 1fr;
+  }
+}
+
+.gallery {
+  position: relative;
+}
+
+.badge {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.close {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: $grey-700;
+  padding: 0;
+  transition: $tr-all-default;
+
+  & svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  @include hover-focus {
+    color: $white;
+  }
+
+  @include active {
+    opacity: 0.6;
+  }
+}
+
+.item {
+  padding-bottom: $indent-4xs;
+  margin-bottom: $indent-xs;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $grey-700;
+  }
+
+  &:last-of-type {
+    margin: 0;
+    padding: 0;
+  }
+
+  @include vp-tablet {
+    padding-bottom: $indent-3xs;
+    margin-bottom: $indent-s;
+
+    &:first-of-type {
+      margin-bottom: $indent-3xs;
+    }
+  }
+}
+
+.itemHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: $indent-4xs;
+
+  @include vp-tablet {
+    margin-bottom: $indent-3xs;
+  }
+}
+
+.itemDetails {
+  padding-bottom: $indent-xs;
+  margin-bottom: $indent-4xs;
+
+  @include vp-tablet {
+    padding-bottom: $indent-s;
+    margin-bottom: $indent-3xs;
+  }
+}
+
+.title {
+  color: $grey-200;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+
+.description,
+.address {
+  color: $grey-400;
+  font-size: $font-xs;
+  line-height: $leading-l;
+  font-weight: 400;
+
+  @include vp-tablet {
+    font-size: $font-s;
+    line-height: $leading-m;
+    font-weight: 300;
+  }
+}
+
+.description {
+  margin-bottom: $indent-4xs;
+
+  @include vp-tablet {
+    margin-bottom: $indent-3xs;
+  }
+}
+
+.address {
+  display: flex;
+  align-items: center;
+  gap: $indent-3xs;
+  margin-bottom: $indent-4xs;
+
+  & svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  @include vp-tablet {
+    margin-bottom: $indent-3xs;
+  }
+}
+
+.readiness {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: $indent-5xs;
+  margin-bottom: $indent-4xs;
+
+  @include vp-tablet {
+    margin-bottom: $indent-3xs;
+  }
+}
+
+.readinessTitle,
+.readinessValue {
+  color: $grey-100;
+  font-weight: 400;
+  font-size: $font-xs;
+  line-height: $leading-m;
+
+  @include vp-tablet {
+    font-size: $font-s;
+    line-height: $leading-l;
+    font-weight: 300;
+  }
+}
+
+.readinessProgress {
+  width: 100%;
+}
+
+.yield {
+  display: flex;
+  flex-direction: column;
+
+  @include vp-tablet {
+    width: auto;
+  }
+}
+
+.itemQuantity {
+  padding-bottom: $indent-4xs;
+  margin-bottom: $indent-xs;
+
+  @include vp-tablet {
+    padding-bottom: $indent-3xs;
+    margin-bottom: $indent-m;
+  }
+}
+
+.quantityTitle {
+  display: block;
+  text-align: center;
+  color: $grey-100;
+  font-weight: 300;
+  font-size: $font-s;
+  line-height: $leading-l;
+  margin-bottom: $indent-4xs;
+
+  @include vp-tablet {
+    font-size: $font-m;
+    line-height: $leading-xl;
+    margin-bottom: $indent-3xs;
+  }
+
+  @include vp-tablet {
+    text-align: start;
+  }
+}
+
+.quantityContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $indent-5xs;
+
+  @include vp-tablet {
+    justify-content: flex-start;
+  }
+}
+
+.quantityText {
+  color: $grey-100;
+  font-size: $font-m;
+  line-height: $leading-xl;
+  margin-right: $indent-4xs;
+}
+
+.quantityUnit {
+  color: $grey-400;
+  font-size: $font-m;
+  font-weight: 300;
+  line-height: $leading-xl;
+}
+
+.item.itemOrder {
+  display: flex;
+  justify-content: space-between;
+  gap: $indent-xs;
+  margin-top: auto;
+}
+
+.orderTextContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.orderTitle,
+.orderPrice {
+  color: $grey-400;
+  font-size: $font-m;
+  font-weight: 300;
+  line-height: $leading-xl;
+}
+
+.orderTitle {
+  width: 100%;
+}
+
+.orderPrice span {
+  color: $grey-200;
+}
+
+.orderButton svg {
+  width: 20px;
+  height: 20px;
+  margin-left: 13px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

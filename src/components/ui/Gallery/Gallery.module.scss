@@ -7,7 +7,7 @@
   aspect-ratio: 1.75;
   object-fit: cover;
 
-  @include vp-tablet {
+  @include vp-tablet-landscape {
     aspect-ratio: 1.46;
   }
 }
