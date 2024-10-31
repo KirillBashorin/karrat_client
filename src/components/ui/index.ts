@@ -3,5 +3,7 @@ import Title from './Title/Title';
 import Accordion from './Accordion/Accordion';
 import AccordionItem from './Accordion/AccordionItem';
 import Badge from './Badge/Badge';
+import Spinner from './Spinner/Spinner';
+import ProgressBar from './ProgressBar/ProgressBar';
 
-export { Button, Title, Accordion, AccordionItem, Badge };
+export { Button, Title, Accordion, AccordionItem, Badge, Spinner, ProgressBar };

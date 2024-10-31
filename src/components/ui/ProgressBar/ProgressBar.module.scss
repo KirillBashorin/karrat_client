@@ -1,0 +1,22 @@
+.root {
+  position: relative;
+  background-color: $grey-700;
+  border-radius: $br-s;
+}
+
+.progress {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  background: $primary-gradient;
+  border-radius: $br-s;
+}
+
+.medium {
+  height: 10px;
+}
+
+.small {
+  height: 4px;
+}
