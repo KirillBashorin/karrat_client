@@ -53,6 +53,7 @@ const Gallery: FC<GalleryProps> = ({ images }) => {
         spaceBetween={16}
         slidesPerView={1}
         onSlideChangeTransitionEnd={handleSlideChange}
+        speed={500}
         onSwiper={swiper => (mainSwiperRef.current = swiper)}
       >
         {images &&
