@@ -1,4 +1,4 @@
 import Object from './Object';
-import Pricer from './Pricer';
+import Tokens from './Tokens';
 
-export { Object, Pricer };
+export { Object, Tokens };

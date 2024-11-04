@@ -15,8 +15,8 @@ if (!projectId) throw new Error('Project ID is not defined');
 const queryClient = new QueryClient();
 
 const metadata = {
-  name: 'Web3Modal',
-  description: 'Web3Modal Example',
+  name: 'KARRAT',
+  description: 'NFT - Real estate',
   url: url,
   icons: ['https://avatars.githubusercontent.com/u/37784886'],
 };

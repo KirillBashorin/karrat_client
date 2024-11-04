@@ -29,7 +29,7 @@ const ObjectPreview: FC<ObjectPreviewProps> = ({ className, object, isSmall }) =
 
   const account = useAccount();
 
-  const oneSharePrice = useReadContract({
+  const currentPriceOneShare = useReadContract({
     address: object.contractAddress,
     abi: Object.abi,
     functionName: 'currentPriceOneShare',
@@ -45,7 +45,7 @@ const ObjectPreview: FC<ObjectPreviewProps> = ({ className, object, isSmall }) =
   return (
     <div
       className={clsx(className, styles.root, isSmall && styles.small)}
-      onClick={() => openPurchaseModal(object.contractAddress)}
+      onClick={currentPriceOneShare ? () => openPurchaseModal(object.contractAddress) : undefined}
     >
       <Image className={styles.image} src={object.image} width={'300'} height={'100'} alt={''} />
       <Badge className={styles.badge} isBright={object.type === 'rent'} size={'small'}>
@@ -54,16 +54,15 @@ const ObjectPreview: FC<ObjectPreviewProps> = ({ className, object, isSmall }) =
       <Title className={styles.title} size={'small'} as={'h3'}>
         {object.title}
       </Title>
-      {oneSharePrice.isFetching && <Spinner className={styles.priceSpinner} />}
-      {oneSharePrice.isSuccess && (
+      {currentPriceOneShare.isFetching && <Spinner className={styles.priceSpinner} />}
+      {currentPriceOneShare.isSuccess && (
         <p className={styles.details}>
           <span className={styles.price}>
-            {priceForCurrentUser.data
+            {priceForCurrentUser.data && currentPriceOneShare.data
               ? formatEther(priceForCurrentUser.data as bigint)
-              : formatEther(oneSharePrice.data as bigint)}
+              : formatEther(currentPriceOneShare.data as bigint)}
             usdt
           </span>
-
           <span> / 1 ft²</span>
         </p>
       )}

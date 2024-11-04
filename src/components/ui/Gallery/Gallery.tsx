@@ -4,6 +4,7 @@ import React, { FC, useState, useRef } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import clsx from 'clsx';
+import 'swiper/css';
 
 import styles from './Gallery.module.scss';
 

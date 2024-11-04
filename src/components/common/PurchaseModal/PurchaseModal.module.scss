@@ -285,7 +285,8 @@
   width: 100%;
 }
 
-.orderPrice span {
+.orderPrice .orderPriceValue,
+.orderPrice .orderPriceUnit, {
   color: $grey-200;
 }
 
