@@ -1,7 +1,10 @@
-import { Address } from 'viem';
+import { Abi } from 'viem';
 
-const Object = {
-  address: '0xC30163Da03FcB887085935951E8D4697D62f1903' as Address,
+interface IObject {
+  abi: Abi;
+}
+
+const Object: IObject = {
   abi: [
     {
       inputs: [],

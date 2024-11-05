@@ -14,7 +14,7 @@ import { formatEther } from 'viem';
 import { useWeb3Modal } from '@web3modal/wagmi/react';
 
 import { Wrapper } from '@/components/layout';
-import { useAppStore, useModalStore } from '@/stores';
+import { useTransactionsTokenStore, useModalStore } from '@/stores';
 import { useObjectsStore } from '@/stores';
 import { Badge, Title, Button, Gallery } from '@/components/ui';
 import ProgressBar from '@/components/ui/ProgressBar/ProgressBar';
@@ -37,7 +37,7 @@ const PurchaseModal: FC = () => {
     }))
   );
 
-  const { transactionsToken } = useAppStore(
+  const { transactionsToken } = useTransactionsTokenStore(
     useShallow(state => ({
       transactionsToken: state.transactionsToken,
     }))
@@ -62,9 +62,11 @@ const PurchaseModal: FC = () => {
   };
 
   const getApprove = () => {
+    if (!transactionsToken) return;
+
     writeContract(
       {
-        address: transactionsToken,
+        address: transactionsToken.address,
         abi: Object.abi,
         functionName: 'approve',
         args: [purchaseModalObjectAddress, getMaxPayTokenAmount()],
@@ -84,7 +86,7 @@ const PurchaseModal: FC = () => {
         address: purchaseModalObjectAddress,
         abi: Object.abi,
         functionName: 'buyShares',
-        args: [quantity, transactionsToken, getMaxPayTokenAmount(), zeroAddress],
+        args: [quantity, transactionsToken?.address, getMaxPayTokenAmount(), zeroAddress],
       },
       {
         onError: () => console.error(writeContractError),
@@ -115,9 +117,8 @@ const PurchaseModal: FC = () => {
     address: purchaseModalObjectAddress || undefined,
     abi: Object.abi,
     functionName: 'estimateBuySharesToken',
-    args: [account.address, quantity, transactionsToken],
+    args: [account.address, quantity, transactionsToken?.address],
   });
-  console.log(estimateBuySharesToken);
 
   // const maxShares = useReadContract({
   //   address: purchaseModalObjectAddress || undefined,

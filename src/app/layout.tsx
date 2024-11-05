@@ -1,7 +1,7 @@
 import React, { FC, Suspense, StrictMode } from 'react';
 import { Manrope } from 'next/font/google';
 
-import { Web3ModalProvider } from '@/providers';
+import { AppProvider, Web3ModalProvider } from '@/providers';
 import { Header, Footer } from '@/components/layout';
 import { PurchaseModal } from '@/components/common';
 
@@ -27,12 +27,14 @@ const RootLayout: FC<IRootLayoutProps> = ({ children }) => {
         <StrictMode>
           <Suspense fallback='Loading...'>
             <Web3ModalProvider>
-              <Header />
-              <main>
-                {children}
-                <PurchaseModal />
-              </main>
-              <Footer />
+              <AppProvider>
+                <Header />
+                <main>
+                  {children}
+                  <PurchaseModal />
+                </main>
+                <Footer />
+              </AppProvider>
             </Web3ModalProvider>
           </Suspense>
         </StrictMode>
