@@ -2,7 +2,7 @@
   "USDT": {
     "address": "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
     "symbol": "USDT",
-    "image": "",
+    "icon": "/images/tokens/USDT.svg",
     "abi": [
       {
         "constant": true,
@@ -229,7 +229,7 @@
   "USDC": {
     "address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
     "symbol": "USDC",
-    "image": "",
+    "icon": "/images/tokens/USDC.svg",
     "abi": [
       {
         "constant": true,
@@ -456,7 +456,7 @@
   "USDCe": {
     "address": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
     "symbol": "USDCe",
-    "image": "",
+    "icon": "/images/tokens/USDCe.svg",
     "abi": [
       {
         "constant": true,

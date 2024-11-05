@@ -10,6 +10,7 @@ import ObjectsSwiper from './ObjectsSwiper/ObjectsSwiper';
 import ObjectPreview from './ObjectPreview/ObjectPreview';
 import ObjectsGrid from './ObjectsGrid/ObjectsGrid';
 import PurchaseModal from './PurchaseModal/PurchaseModal';
+import TokenSelect from './TokenSelect/TokenSelect';
 
 export {
   WalletConnectButton,
@@ -24,4 +25,5 @@ export {
   ObjectPreview,
   ObjectsGrid,
   PurchaseModal,
+  TokenSelect,
 };

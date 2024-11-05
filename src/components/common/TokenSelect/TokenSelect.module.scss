@@ -1,0 +1,80 @@
+.root {
+  min-width: 160px;
+}
+
+.root .control {
+  @include card;
+
+  padding: 0 $indent-4xs;
+  color: $grey-400;
+  height: 100%;
+
+  &.controlFocused {
+    border-color: $white;
+  }
+}
+
+.root .singleValue {
+  color: $grey-400;
+}
+
+.root .indicatorSeparator {
+  display: none;
+}
+
+.root .dropdownIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  transition: transform $tr-default;
+
+  &.dropdownIndicatorOpened {
+    transform: rotate(180deg);
+  }
+}
+
+.root .menu {
+  @include card;
+
+  top: calc(100% + 4px);
+  padding: $indent-4xs 0;
+  margin: 0;
+
+  & ul {
+    padding: 0;
+  }
+}
+
+.root .option {
+  cursor: pointer;
+  padding: $indent-4xs $indent-2xs;
+  color: $grey-400;
+  font-size: $font-m;
+  line-height: $leading-xl;
+
+  &.optionSelected {
+    background-color: $grey-700;
+  }
+
+  &.optionFocused {
+    background-color: $grey-600;
+  }
+}
+
+.root .tokenItem {
+  display: flex;
+  align-items: center;
+  gap: $indent-5xs;
+}
+
+.root .icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.root .optionSelected {
+  background-color: $grey-800;
+}

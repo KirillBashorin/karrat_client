@@ -10,7 +10,7 @@ import { MetaMaskAvatar } from 'react-metamask-avatar';
 import LogoutIcon from '/public/images/icons/logout.svg';
 
 import { Wrapper } from '@/components/layout';
-import { Logo } from '@/components/common';
+import { Logo, TokenSelect } from '@/components/common';
 import { Button } from '@/components/ui';
 
 import ArrowCircleSVG from '/public/images/icons/arrow-circle.svg';
@@ -145,6 +145,7 @@ const Header: FC = () => {
           </nav>
 
           <div className={styles.buttons}>
+            <TokenSelect />
             <Button className={styles.marketButton} href={'/marketplace/'}>
               Marketplace
               <ArrowCircleSVG />

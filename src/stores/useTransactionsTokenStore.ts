@@ -7,12 +7,12 @@ import { ObjectType } from '@/types';
 interface IToken {
   address: Address;
   symbol: string;
-  image: string;
+  icon: string;
   abi: Abi;
 }
 
 type State = {
-  tokensList: IToken[] | null;
+  transactionsTokensList: IToken[] | null;
   transactionsToken: IToken | null;
 };
 
@@ -23,7 +23,7 @@ type Action = {
 
 const useTransactionsTokenStore = create<State & Action>()(
   devtools((set, get) => ({
-    tokensList: null,
+    transactionsTokensList: null,
     transactionsToken: null,
     setTransactionsToken: token => {
       set({ transactionsToken: token });
@@ -38,7 +38,7 @@ const useTransactionsTokenStore = create<State & Action>()(
 
         const data = await response.json();
 
-        set({ tokensList: data });
+        set({ transactionsTokensList: data });
         const firstToken = data[Object.keys(data)[0]];
 
         get().setTransactionsToken(firstToken);
