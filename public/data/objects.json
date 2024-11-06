@@ -6,7 +6,8 @@
     "gallery": ["/images/preview.png", "/images/preview.png", "/images/preview.png", "/images/preview.png", "/images/preview.png", "/images/preview.png", "/images/preview.png", "/images/preview.png", "/images/preview.png"],
     "title": "Five Palms 1 many chars in the title",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum varius est, vestibulum tristique dui efficitur eget.",
-    "objectAddress": "C17, JVT District 2, El Barsha South 5."
+    "objectAddress": "C17, JVT District 2, El Barsha South 5.",
+    "yield": 23
   },
   {
     "contractAddress": "0xD3B99DF182711f176EDdC824210046FDE136197d",
@@ -15,6 +16,7 @@
     "gallery": ["/images/preview.png", "/images/preview.png", "/images/preview.png", "/images/preview.png"],
     "title": "Five Palms 2",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum varius est, vestibulum tristique dui efficitur eget.",
-    "objectAddress": "C17, JVT District 2, El Barsha South 5."
+    "objectAddress": "C17, JVT District 2, El Barsha South 5.",
+    "yield": 46
   }
 ]

@@ -8,4 +8,5 @@ export type ObjectType = {
   title: string;
   description: string;
   objectAddress: string;
+  yield: number;
 };
