@@ -15,7 +15,7 @@ import { useWeb3Modal } from '@web3modal/wagmi/react';
 import { Wrapper } from '@/components/layout';
 import { useTransactionsTokenStore, useModalStore } from '@/stores';
 import { useObjectsStore } from '@/stores';
-import { Badge, Title, Button, Gallery } from '@/components/ui';
+import { Badge, Title, Button, Gallery, Spinner, Counter } from '@/components/ui';
 import ProgressBar from '@/components/ui/ProgressBar/ProgressBar';
 import { Object } from '@/contracts';
 
@@ -89,6 +89,7 @@ const PurchaseModal: FC = () => {
         args: [quantity, transactionsToken?.address, getMaxPayTokenAmount(), zeroAddress],
       },
       {
+        onSuccess: () => mintedShares.refetch(),
         onError: () => console.error(writeContractError),
       }
     );
@@ -171,17 +172,22 @@ const PurchaseModal: FC = () => {
                     <ProgressBar className={styles.readinessProgress} progress={54} />
                   </div>
                   <div className={styles.yield}>
-                    <Badge size={'small'}>Yield ≈ {currentObject.yield} USDT / month</Badge>
+                    <Badge size={'small'}>Yield ≈ {currentObject.yield * quantity} USDT / month</Badge>
                   </div>
                 </div>
 
                 <div className={clsx(styles.item, styles.itemQuantity)}>
                   <span className={styles.quantityTitle}>
-                    Доступно к покупке: {availableShares && availableShares} ft²
+                    Available to buy: {availableShares && availableShares} ft²
                   </span>
                   <div className={styles.quantityContainer}>
-                    <span className={styles.quantityText}>Вы покупаете:</span>
-                    <div className={styles.quantitySelesctor}>Counter</div>
+                    <span className={styles.quantityText}>You&apos;re buying:</span>
+                    <Counter
+                      className={styles.quantitySelesctor}
+                      min={1}
+                      max={availableShares}
+                      onChange={value => setQuantity(value)}
+                    />
                     <span className={styles.quantityUnit}>ft²</span>
                   </div>
                 </div>
@@ -191,13 +197,14 @@ const PurchaseModal: FC = () => {
                     <span className={styles.orderTitle}>Стоимость:</span>
                     <span className={styles.orderPrice}>
                       <span className={styles.orderPriceValue}>
-                        {transactionsToken?.decimals &&
-                          Number(
-                            formatUnits(estimateBuySharesToken.data as bigint, transactionsToken?.decimals)
-                          ).toFixed(2)}
+                        {estimateBuySharesToken.isLoading && <Spinner />}
+                        {transactionsToken &&
+                          transactionsToken?.decimals &&
+                          typeof estimateBuySharesToken.data === 'bigint' &&
+                          Number(formatUnits(estimateBuySharesToken.data, transactionsToken.decimals)).toFixed(2)}
                       </span>
                       <span className={styles.orderPriceUnit}> {transactionsToken?.symbol}</span>
-                      <span> / ft²</span>
+                      {quantity === 1 && <span> / ft²</span>}
                     </span>
                   </div>
                   <Button

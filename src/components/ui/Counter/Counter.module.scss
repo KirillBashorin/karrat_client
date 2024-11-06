@@ -1,0 +1,47 @@
+.root {
+  display: flex;
+  align-items: center;
+  background-color: $grey-700;
+  border-radius: $br-2xs / 2;
+  padding: 4px $indent-5xs;
+}
+
+.input {
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  color: $grey-100;
+  font-weight: 300;
+  font-size: $font-m;
+  line-height: $leading-xl;
+  -moz-appearance: textfield;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  transition: opacity $tr-default;
+  padding: 0;
+
+  &:not(:disabled) {
+    @include active {
+      opacity: 0.6;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+
+.button svg {
+  width: 24px;
+  height: 24px;
+}

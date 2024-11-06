@@ -58,15 +58,17 @@ const ObjectPreview: FC<ObjectPreviewProps> = ({ className, object, isSmall }) =
         estimateBuySharesToken.isError &&
         !estimateBuySharesToken.data &&
         !transactionsToken?.decimals && <Spinner className={styles.priceSpinner} />}
-      {estimateBuySharesToken.isSuccess && transactionsToken?.decimals && (
-        <p className={styles.details}>
-          <span className={styles.price}>
-            {Number(formatUnits(estimateBuySharesToken.data as bigint, transactionsToken?.decimals)).toFixed(2)}{' '}
-            {transactionsToken?.symbol}
-          </span>
-          <span> / 1 ft²</span>
-        </p>
-      )}
+      {estimateBuySharesToken.isSuccess &&
+        transactionsToken?.decimals &&
+        typeof estimateBuySharesToken.data === 'bigint' && (
+          <p className={styles.details}>
+            <span className={styles.price}>
+              {Number(formatUnits(estimateBuySharesToken.data, transactionsToken.decimals)).toFixed(2)}{' '}
+              {transactionsToken.symbol}
+            </span>
+            <span> / 1 ft²</span>
+          </p>
+        )}
     </div>
   );
 };

@@ -1,8 +1,8 @@
 .root {
   @include card;
 
-  position: relative;
   cursor: pointer;
+  position: relative;
   padding: $indent-2xs;
 }
 

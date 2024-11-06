@@ -6,5 +6,6 @@ import Badge from './Badge/Badge';
 import Spinner from './Spinner/Spinner';
 import ProgressBar from './ProgressBar/ProgressBar';
 import Gallery from './Gallery/Gallery';
+import Counter from './Counter/Counter';
 
-export { Button, Title, Accordion, AccordionItem, Badge, Spinner, ProgressBar, Gallery };
+export { Button, Title, Accordion, AccordionItem, Badge, Spinner, ProgressBar, Gallery, Counter };
