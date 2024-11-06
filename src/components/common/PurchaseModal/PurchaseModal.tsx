@@ -4,13 +4,12 @@ import React, { FC, useRef, useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { useShallow } from 'zustand/react/shallow';
 import { useAccount, useReadContract, useWriteContract } from 'wagmi';
-import { parseEther, zeroAddress } from 'viem';
+import { formatUnits, parseEther, zeroAddress } from 'viem';
 
 import CloseIcon from '/public/images/icons/cross.svg';
 import MapPinIcon from '/public/images/icons/map-pin.svg';
 import ArrowCircleIcon from '/public/images/icons/arrow-circle.svg';
 
-import { formatEther } from 'viem';
 import { useWeb3Modal } from '@web3modal/wagmi/react';
 
 import { Wrapper } from '@/components/layout';
@@ -44,6 +43,7 @@ const PurchaseModal: FC = () => {
   );
 
   const [quantity, setQuantity] = useState(1);
+  const [availableShares, setAvailableShares] = useState(0);
   const innerRef = useRef<HTMLDivElement>(null);
 
   const { open } = useWeb3Modal();
@@ -100,49 +100,41 @@ const PurchaseModal: FC = () => {
     if (innerRef.current && !innerRef.current.contains(evt.target as Node)) closePurchaseModal();
   };
 
-  const currentPriceOneShare = useReadContract({
-    address: purchaseModalObjectAddress || undefined,
-    abi: Object.abi,
-    functionName: 'currentPriceOneShare',
-  });
-
-  const priceForCurrentUser = useReadContract({
-    address: purchaseModalObjectAddress || undefined,
-    abi: Object.abi,
-    functionName: 'getPriceForUser',
-    args: [account.address],
-  });
-
   const estimateBuySharesToken = useReadContract({
     address: purchaseModalObjectAddress || undefined,
     abi: Object.abi,
     functionName: 'estimateBuySharesToken',
-    args: [account.address, quantity, transactionsToken?.address],
+    args: [account.address || zeroAddress, quantity, transactionsToken?.address],
   });
 
-  // const maxShares = useReadContract({
-  //   address: purchaseModalObjectAddress || undefined,
-  //   abi: Object.abi,
-  //   functionName: 'maxShares',
-  // });
-  //
-  // const mintedShares = useReadContract({
-  //   address: purchaseModalObjectAddress || undefined,
-  //   abi: Object.abi,
-  //   functionName: 'mintedShares',
-  // });
+  const maxShares = useReadContract({
+    address: purchaseModalObjectAddress || undefined,
+    abi: Object.abi,
+    functionName: 'maxShares',
+  });
+
+  const mintedShares = useReadContract({
+    address: purchaseModalObjectAddress || undefined,
+    abi: Object.abi,
+    functionName: 'mintedShares',
+  });
 
   const handlerBuyNft = () => {
-    if (!purchaseModalObjectAddress || !priceForCurrentUser.data) return;
+    if (!purchaseModalObjectAddress || !estimateBuySharesToken.data) return;
 
     getApprove();
-
-    getMaxPayTokenAmount(); // test
   };
 
   useEffect(() => {
     document.body.style.overflowY = isPurchaseModalOpen ? 'hidden' : 'auto';
   }, [isPurchaseModalOpen]);
+
+  useEffect(() => {
+    if (typeof maxShares.data !== 'bigint' || typeof mintedShares.data !== 'bigint') return;
+
+    const estimatedAvailableShares = maxShares.data - mintedShares.data;
+    setAvailableShares(Number(estimatedAvailableShares));
+  }, [maxShares.data, mintedShares.data]);
 
   return (
     <section className={clsx(isPurchaseModalOpen && styles.opened, styles.root)} onMouseUp={handleOutsideClick}>
@@ -179,12 +171,14 @@ const PurchaseModal: FC = () => {
                     <ProgressBar className={styles.readinessProgress} progress={54} />
                   </div>
                   <div className={styles.yield}>
-                    <Badge size={'small'}>Доходность ≈ 23 usdt / мес</Badge>
+                    <Badge size={'small'}>Yield ≈ {currentObject.yield} USDT / month</Badge>
                   </div>
                 </div>
 
                 <div className={clsx(styles.item, styles.itemQuantity)}>
-                  <span className={styles.quantityTitle}>Доступно к покупке: 1000 ft²</span>
+                  <span className={styles.quantityTitle}>
+                    Доступно к покупке: {availableShares && availableShares} ft²
+                  </span>
                   <div className={styles.quantityContainer}>
                     <span className={styles.quantityText}>Вы покупаете:</span>
                     <div className={styles.quantitySelesctor}>Counter</div>
@@ -197,11 +191,12 @@ const PurchaseModal: FC = () => {
                     <span className={styles.orderTitle}>Стоимость:</span>
                     <span className={styles.orderPrice}>
                       <span className={styles.orderPriceValue}>
-                        {priceForCurrentUser.data && currentPriceOneShare.data
-                          ? formatEther(priceForCurrentUser.data as bigint)
-                          : formatEther(currentPriceOneShare.data as bigint)}
+                        {transactionsToken?.decimals &&
+                          Number(
+                            formatUnits(estimateBuySharesToken.data as bigint, transactionsToken?.decimals)
+                          ).toFixed(2)}
                       </span>
-                      <span className={styles.orderPriceUnit}> usdt</span>
+                      <span className={styles.orderPriceUnit}> {transactionsToken?.symbol}</span>
                       <span> / ft²</span>
                     </span>
                   </div>
@@ -210,7 +205,7 @@ const PurchaseModal: FC = () => {
                     isTransparent={true}
                     isBright={true}
                     onClick={account.address ? handlerBuyNft : open}
-                    disabled={!purchaseModalObjectAddress || !currentPriceOneShare.data}
+                    disabled={!purchaseModalObjectAddress || !estimateBuySharesToken.data}
                   >
                     Buy <ArrowCircleIcon />
                   </Button>

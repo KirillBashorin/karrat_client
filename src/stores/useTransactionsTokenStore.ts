@@ -2,13 +2,12 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { Abi, Address } from 'viem';
 
-import { ObjectType } from '@/types';
-
 interface IToken {
   address: Address;
   symbol: string;
   icon: string;
   abi: Abi;
+  decimals: number | undefined;
 }
 
 type State = {
@@ -19,6 +18,7 @@ type State = {
 type Action = {
   getTokensList: () => Promise<void>;
   setTransactionsToken: (token: IToken) => void;
+  setDecimalsForTransactionsToken: (decimals: number) => void;
 };
 
 const useTransactionsTokenStore = create<State & Action>()(
@@ -45,6 +45,13 @@ const useTransactionsTokenStore = create<State & Action>()(
       } catch (error) {
         console.error('Error fetching objects:', error);
       }
+    },
+    setDecimalsForTransactionsToken: decimals => {
+      const transactionsToken = get().transactionsToken;
+
+      if (!transactionsToken) return;
+
+      get().setTransactionsToken({ ...transactionsToken, decimals });
     },
   }))
 );
