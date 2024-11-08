@@ -1,7 +1,8 @@
 'use client';
 
-import React, { FC, useState, useRef } from 'react';
+import React, { FC, useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperType } from 'swiper';
 import { Grid, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/grid';
@@ -20,9 +21,28 @@ interface ObjectsGridProps {
 }
 
 const ObjectsGrid: FC<ObjectsGridProps> = ({ objects }) => {
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
+  const [isShowNavigation, setIsShowNavigation] = useState(false);
+
+  const updateShowNavigation = () => {
+    const swiper = swiperRef.current;
+
+    if (!swiper) return;
+
+    const slidesPerView = swiper.params.slidesPerView;
+
+    if (typeof slidesPerView !== 'number') return;
+
+    const rows = swiper.params.grid?.rows;
+    const totalVisibleSlides = slidesPerView * (rows || 1);
+    setIsShowNavigation(objects.length > totalVisibleSlides);
+  };
+
+  useEffect(() => {
+    updateShowNavigation();
+  }, [objects.length]);
 
   return (
     <div className={styles.root}>
@@ -63,26 +83,28 @@ const ObjectsGrid: FC<ObjectsGridProps> = ({ objects }) => {
               <ObjectPreview object={item} isSmall={true} />
             </SwiperSlide>
           ))}
-        <div className={styles.navigation}>
-          <Button
-            className={styles.prev}
-            onClick={() => swiperRef.current?.slidePrev()}
-            isTransparent={true}
-            disabled={isBeginning}
-          >
-            <ArrowCircleIcon />
-            Previous
-          </Button>
-          <Button
-            className={styles.next}
-            onClick={() => swiperRef.current?.slideNext()}
-            isTransparent={true}
-            disabled={isEnd}
-          >
-            Next
-            <ArrowCircleIcon />
-          </Button>
-        </div>
+        {isShowNavigation && (
+          <div className={styles.navigation}>
+            <Button
+              className={styles.prev}
+              onClick={() => swiperRef.current?.slidePrev()}
+              isTransparent={true}
+              disabled={isBeginning}
+            >
+              <ArrowCircleIcon />
+              Previous
+            </Button>
+            <Button
+              className={styles.next}
+              onClick={() => swiperRef.current?.slideNext()}
+              isTransparent={true}
+              disabled={isEnd}
+            >
+              Next
+              <ArrowCircleIcon />
+            </Button>
+          </div>
+        )}
       </Swiper>
     </div>
   );
