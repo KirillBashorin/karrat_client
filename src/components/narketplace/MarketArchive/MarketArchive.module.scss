@@ -6,7 +6,7 @@
   @include vp-tablet {
     &::before {
       content: '';
-      z-index: 1;
+      z-index: 0;
       position: absolute;
       top: 0;
       right: 0;
@@ -21,6 +21,8 @@
 }
 
 .inner {
+  z-index: 1;
+  position: relative;
   padding: ($indent-l * 2) 0 $indent-l;
 
   @include vp-tablet {
@@ -29,9 +31,21 @@
 }
 
 .heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $indent-2xs;
   margin-bottom: $indent-m;
 
   @include vp-tablet {
+    flex-direction: row;
+    justify-content: space-between;
     margin-bottom: $indent-2xl;
   }
+}
+
+.howItWorksButton svg {
+  width: 24px;
+  height: 24px;
+  margin-left: $indent-3xs;
 }

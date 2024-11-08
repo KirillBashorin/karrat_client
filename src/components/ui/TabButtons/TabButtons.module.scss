@@ -1,0 +1,46 @@
+.root {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: fit-content;
+}
+
+.button {
+  cursor: pointer;
+  padding: $indent-3xs $indent-2xs;
+  background-color: $grey-800;
+  color: $grey-400;
+  font-size: $font-m;
+  line-height: $leading-xl;
+  font-weight: 300;
+  border: none;
+  transition: $tr-all-default;
+
+  &.active {
+    color: $white;
+    font-weight: 500;
+    background-color: $grey-700;
+  }
+
+  &:first-of-type {
+    border-radius: $br-xs 0 0 $br-xs;
+  }
+
+  &:last-of-type {
+    border-radius: 0 $br-xs $br-xs 0;
+  }
+
+  &:not(:last-of-type) {
+    border-right: 1px solid $grey-700;
+  }
+
+  &:not(.active) {
+    @include hover-focus {
+      background-color: rgba($grey-800, 0.7);
+    }
+
+    @include active {
+      opacity: 0.6;
+    }
+  }
+}

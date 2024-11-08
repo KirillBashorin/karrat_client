@@ -1,3 +1,3 @@
-import MarketObjectTabs from './MarketObjectTabs/MarketObjectTabs';
+import MarketArchive from './MarketArchive/MarketArchive';
 
-export { MarketObjectTabs };
+export { MarketArchive };
