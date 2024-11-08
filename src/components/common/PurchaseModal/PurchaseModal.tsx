@@ -126,6 +126,10 @@ const PurchaseModal: FC = () => {
     getApprove();
   };
 
+  const getProgressValue = () => {
+    return Math.round((Number(mintedShares.data) / Number(maxShares.data)) * 100);
+  };
+
   useEffect(() => {
     document.body.style.overflowY = isPurchaseModalOpen ? 'hidden' : 'auto';
   }, [isPurchaseModalOpen]);
@@ -136,6 +140,8 @@ const PurchaseModal: FC = () => {
     const estimatedAvailableShares = maxShares.data - mintedShares.data;
     setAvailableShares(Number(estimatedAvailableShares));
   }, [maxShares.data, mintedShares.data]);
+
+  console.log(mintedShares.data, maxShares.data);
 
   return (
     <section className={clsx(isPurchaseModalOpen && styles.opened, styles.root)} onMouseUp={handleOutsideClick}>
@@ -168,8 +174,8 @@ const PurchaseModal: FC = () => {
                   </p>
                   <div className={styles.readiness}>
                     <span className={styles.readinessTitle}>Readiness to rent</span>
-                    <span className={styles.readinessValue}>54%</span>
-                    <ProgressBar className={styles.readinessProgress} progress={54} />
+                    <span className={styles.readinessValue}>{getProgressValue()}%</span>
+                    <ProgressBar className={styles.readinessProgress} progress={getProgressValue()} />
                   </div>
                   <div className={styles.yield}>
                     <Badge size={'small'}>Yield ≈ {currentObject.yield * quantity} USDT / month</Badge>
