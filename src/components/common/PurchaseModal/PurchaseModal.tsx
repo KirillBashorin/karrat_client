@@ -127,7 +127,8 @@ const PurchaseModal: FC = () => {
   };
 
   const getProgressValue = () => {
-    return Math.round((Number(mintedShares.data) / Number(maxShares.data)) * 100);
+    const value = Math.round((Number(mintedShares.data) / Number(maxShares.data)) * 100);
+    return value || 0;
   };
 
   useEffect(() => {
@@ -140,8 +141,6 @@ const PurchaseModal: FC = () => {
     const estimatedAvailableShares = maxShares.data - mintedShares.data;
     setAvailableShares(Number(estimatedAvailableShares));
   }, [maxShares.data, mintedShares.data]);
-
-  console.log(mintedShares.data, maxShares.data);
 
   return (
     <section className={clsx(isPurchaseModalOpen && styles.opened, styles.root)} onMouseUp={handleOutsideClick}>
@@ -178,7 +177,9 @@ const PurchaseModal: FC = () => {
                     <ProgressBar className={styles.readinessProgress} progress={getProgressValue()} />
                   </div>
                   <div className={styles.yield}>
-                    <Badge size={'small'}>Yield ≈ {currentObject.yield * quantity} USDT / month</Badge>
+                    <Badge size={'small'} isBright={currentObject.type === 'rent'}>
+                      Yield ≈ {currentObject.yield * quantity} USDT / month
+                    </Badge>
                   </div>
                 </div>
 
