@@ -36,6 +36,8 @@ const Counter: FC<CounterProps> = ({ className, min, max, step = 1, onChange }) 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const targetValue = Number(evt.currentTarget.value);
 
+    if (max && min && (targetValue < min || targetValue > max)) return;
+
     setValue(targetValue);
     onChange && onChange(targetValue);
   };
