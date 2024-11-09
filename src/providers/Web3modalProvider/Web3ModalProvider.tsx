@@ -3,7 +3,7 @@
 import React, { FC } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createAppKit } from '@reown/appkit/react';
-import { hardhat } from '@reown/appkit/networks';
+import { hardhat, mainnet } from '@reown/appkit/networks';
 import { WagmiProvider, type Config } from 'wagmi';
 import { createStorage } from '@wagmi/core';
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi';
@@ -22,7 +22,7 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/37784886'],
 };
 
-const networks = [hardhat];
+const networks = [mainnet, hardhat];
 
 const wagmiAdapter = new WagmiAdapter({
   storage: createStorage(typeof window !== 'undefined' ? { storage: localStorage } : {}),
@@ -34,8 +34,8 @@ const wagmiAdapter = new WagmiAdapter({
 createAppKit({
   adapters: [wagmiAdapter],
   projectId,
-  networks: [hardhat],
-  defaultNetwork: hardhat,
+  networks: [mainnet, hardhat],
+  defaultNetwork: mainnet,
   metadata: metadata,
   featuredWalletIds: [
     'c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96',
