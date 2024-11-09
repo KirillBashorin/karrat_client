@@ -1,14 +1,15 @@
 'use client';
 
 import React, { FC } from 'react';
-import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
-import { hardhat } from 'wagmi/chains';
-import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { WagmiProvider } from 'wagmi';
+import { createAppKit } from '@reown/appkit/react';
+import { hardhat } from '@reown/appkit/networks';
+import { WagmiProvider, type Config } from 'wagmi';
+import { createStorage } from '@wagmi/core';
+import { WagmiAdapter } from '@reown/appkit-adapter-wagmi';
 
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
-const url = String(process.env.NEXT_PUBLIC_URL);
+const url = (typeof window !== 'undefined' && window.location.hostname) || '';
 
 if (!projectId) throw new Error('Project ID is not defined');
 
@@ -21,27 +22,39 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/37784886'],
 };
 
+const networks = [hardhat];
+
+const wagmiAdapter = new WagmiAdapter({
+  storage: createStorage(typeof window !== 'undefined' ? { storage: localStorage } : {}),
+  ssr: true,
+  projectId,
+  networks,
+});
+
+createAppKit({
+  adapters: [wagmiAdapter],
+  projectId,
+  networks: [hardhat],
+  defaultNetwork: hardhat,
+  metadata: metadata,
+  features: {
+    email: false,
+    socials: false,
+    analytics: false,
+  },
+  featuredWalletIds: [
+    'c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96',
+    '4622a2b2d6af1c9844944291e5e7351a6aa24cd7b23099efac1b2fd875da31a0',
+  ],
+});
+
 interface IWeb3ModalProviderProps {
   children: React.ReactNode;
 }
 
 const Web3ModalProvider: FC<IWeb3ModalProviderProps> = ({ children }) => {
-  const chains = [hardhat] as const;
-
-  const config = defaultWagmiConfig({
-    chains,
-    projectId,
-    metadata,
-    ssr: true,
-  });
-
-  createWeb3Modal({
-    wagmiConfig: config,
-    projectId,
-  });
-
   return (
-    <WagmiProvider config={config}>
+    <WagmiProvider config={wagmiAdapter.wagmiConfig as Config}>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </WagmiProvider>
   );

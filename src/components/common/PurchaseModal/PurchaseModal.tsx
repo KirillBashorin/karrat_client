@@ -5,12 +5,11 @@ import clsx from 'clsx';
 import { useShallow } from 'zustand/react/shallow';
 import { useAccount, useReadContract, useWriteContract } from 'wagmi';
 import { formatUnits, parseEther, zeroAddress } from 'viem';
+import { useAppKit } from '@reown/appkit/react';
 
 import CloseIcon from '/public/images/icons/cross.svg';
 import MapPinIcon from '/public/images/icons/map-pin.svg';
 import ArrowCircleIcon from '/public/images/icons/arrow-circle.svg';
-
-import { useWeb3Modal } from '@web3modal/wagmi/react';
 
 import { Wrapper } from '@/components/layout';
 import { useTransactionsTokenStore, useModalStore } from '@/stores';
@@ -46,7 +45,7 @@ const PurchaseModal: FC = () => {
   const [availableShares, setAvailableShares] = useState(0);
   const innerRef = useRef<HTMLDivElement>(null);
 
-  const { open } = useWeb3Modal();
+  const { open } = useAppKit();
   const account = useAccount();
   const { writeContract, error: writeContractError } = useWriteContract();
 

@@ -1,4 +1,3 @@
-import WalletConnectButton from './WalletConnectButton/WalletConnectButton';
 import Logo from './Logo/Logo';
 import Socials from './Socials/Socials';
 import Hero from './Hero/Hero';
@@ -13,7 +12,6 @@ import PurchaseModal from './PurchaseModal/PurchaseModal';
 import TokenSelect from './TokenSelect/TokenSelect';
 
 export {
-  WalletConnectButton,
   Logo,
   Socials,
   Hero,

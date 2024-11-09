@@ -12,11 +12,14 @@
 
 .heading {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  gap: $indent-2xs;
   margin-bottom: $indent-2xs;
 
   @include vp-tablet {
+    flex-direction: row;
     margin-bottom: $indent-xl;
   }
 }
