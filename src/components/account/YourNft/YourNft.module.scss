@@ -1,0 +1,28 @@
+.root {
+  background-color: $grey-900;
+}
+
+.inner {
+  padding: ($indent-l * 2) 0;
+
+  @include vp-tablet {
+    padding: ($indent-2xl * 2) 0;
+  }
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $indent-2xs;
+
+  @include vp-tablet {
+    margin-bottom: $indent-xl;
+  }
+}
+
+.claimButton svg {
+    width: 24px;
+    height: 24px;
+    margin-left: $indent-3xs;
+}

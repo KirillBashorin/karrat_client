@@ -14,6 +14,10 @@
   transition: $tr-all-default;
   background-size: 150% 150%;
 
+  &:disabled {
+    opacity: 0.3;
+  }
+
   &.transparent {
     background: transparent;
     color: $grey-400;
