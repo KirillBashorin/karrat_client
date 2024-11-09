@@ -14,7 +14,7 @@
   transition: $tr-all-default;
   background-size: 150% 150%;
 
-  &:disabled {
+  &:not(.transparent):disabled {
     opacity: 0.3;
   }
 
@@ -27,6 +27,12 @@
   &.transparent.bright {
     color: $white;
     border: 1px solid $white;
+  }
+
+  &.transparent:disabled,
+  &.transparent.bright:disabled {
+    color: $grey-600;
+    border-color: $grey-600;
   }
 
   @include hover-focus {
@@ -50,6 +56,7 @@
       color: rgba($white, 0.6);
 
       &.transparent {
+        opacity: 0.6;
         color: rgba($white, 0.4);
         border: 1px solid rgba($white, 0.4);
       }

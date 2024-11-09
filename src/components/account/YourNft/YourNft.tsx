@@ -1,9 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
-import { useAccount, useReadContract, useReadContracts } from 'wagmi';
+import { useAccount, useReadContracts } from 'wagmi';
 
 import { Wrapper } from '@/components/layout';
 import { Button, TabButtons, Title } from '@/components/ui';
+import { ObjectUserNft } from '@/components/account';
 import { Object } from '@/contracts';
 
 import ArrowCircleIcon from '/public/images/icons/arrow-circle.svg';
@@ -37,7 +38,7 @@ const YourNft: FC = () => {
 
   useEffect(() => {
     getObjectsList();
-  }, []);
+  }, [getObjectsList]);
 
   useEffect(() => {
     if (!balanceOf?.data || !objectsList) return;
@@ -53,8 +54,6 @@ const YourNft: FC = () => {
 
     setYourNftData(fetchedYourNftData);
   }, [balanceOf?.data, objectsList, currentItemIndex]);
-
-  console.log('ynftd', yourNftData);
 
   return (
     <section className={styles.root}>
@@ -87,6 +86,13 @@ const YourNft: FC = () => {
               </Button>
             )}
           </div>
+          {/*{yourNftData && yourNftData.length > 0 && (*/}
+          {objectsList && objectsList.length > 0 && (
+            <div className={styles.list}>
+              {/*<ObjectUserNft object={yourNftData[0].object} id={BigInt(1)} />*/}
+              <ObjectUserNft object={objectsList[0]} id={BigInt(1)} />
+            </div>
+          )}
         </div>
       </Wrapper>
     </section>
