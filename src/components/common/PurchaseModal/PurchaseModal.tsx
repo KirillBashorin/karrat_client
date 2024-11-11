@@ -4,7 +4,7 @@ import React, { FC, useRef, useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { useShallow } from 'zustand/react/shallow';
 import { useAccount, useReadContract, useWriteContract } from 'wagmi';
-import { formatUnits, parseEther, zeroAddress } from 'viem';
+import { formatUnits, parseUnits, zeroAddress } from 'viem';
 import { useAppKit } from '@reown/appkit/react';
 
 import CloseIcon from '/public/images/icons/cross.svg';
@@ -42,7 +42,6 @@ const PurchaseModal: FC = () => {
   );
 
   const [quantity, setQuantity] = useState(1);
-  const [availableShares, setAvailableShares] = useState(0);
   const innerRef = useRef<HTMLDivElement>(null);
 
   const { open } = useAppKit();
@@ -50,14 +49,16 @@ const PurchaseModal: FC = () => {
   const { writeContract, error: writeContractError } = useWriteContract();
 
   const getMaxPayTokenAmount = () => {
-    if (!estimateBuySharesToken.data || typeof estimateBuySharesToken.data !== 'bigint') return null;
+    if (!estimateBuySharesToken.data || typeof estimateBuySharesToken.data !== 'bigint' || !transactionsToken?.decimals)
+      return null;
 
-    const slippage = parseEther(process.env.NEXT_PUBLIC_SLIPPAGE || '0.02');
-    const priceInWei = estimateBuySharesToken.data;
+    const price = estimateBuySharesToken.data;
 
-    const totalPayableAmount = priceInWei * (parseEther('1') + slippage);
+    const slippageFraction =
+      parseUnits('1', transactionsToken.decimals) +
+      parseUnits(process.env.NEXT_PUBLIC_SLIPPAGE || '0.02', transactionsToken.decimals);
 
-    return totalPayableAmount / parseEther('1');
+    return (price * slippageFraction) / parseUnits('1', transactionsToken.decimals);
   };
 
   const getApprove = () => {
@@ -100,23 +101,36 @@ const PurchaseModal: FC = () => {
     if (innerRef.current && !innerRef.current.contains(evt.target as Node)) closePurchaseModal();
   };
 
-  const estimateBuySharesToken = useReadContract({
+  const contractData = {
     address: purchaseModalObjectAddress || undefined,
     abi: Object.abi,
+  };
+
+  const estimateBuySharesToken = useReadContract({
+    ...contractData,
     functionName: 'estimateBuySharesToken',
     args: [account.address || zeroAddress, quantity, transactionsToken?.address],
   });
 
   const maxShares = useReadContract({
-    address: purchaseModalObjectAddress || undefined,
-    abi: Object.abi,
+    ...contractData,
     functionName: 'maxShares',
   });
 
   const mintedShares = useReadContract({
-    address: purchaseModalObjectAddress || undefined,
-    abi: Object.abi,
+    ...contractData,
     functionName: 'mintedShares',
+  });
+
+  const currentStage = useReadContract({
+    ...contractData,
+    functionName: 'currentStage',
+  });
+
+  const stageAvailableShares = useReadContract({
+    ...contractData,
+    functionName: 'stageAvailableShares',
+    args: [currentStage.data],
   });
 
   const handlerBuyNft = () => {
@@ -133,13 +147,6 @@ const PurchaseModal: FC = () => {
   useEffect(() => {
     document.body.style.overflowY = isPurchaseModalOpen ? 'hidden' : 'auto';
   }, [isPurchaseModalOpen]);
-
-  useEffect(() => {
-    if (typeof maxShares.data !== 'bigint' || typeof mintedShares.data !== 'bigint') return;
-
-    const estimatedAvailableShares = maxShares.data - mintedShares.data;
-    setAvailableShares(Number(estimatedAvailableShares));
-  }, [maxShares.data, mintedShares.data]);
 
   return (
     <section className={clsx(isPurchaseModalOpen && styles.opened, styles.root)} onMouseUp={handleOutsideClick}>
@@ -184,14 +191,14 @@ const PurchaseModal: FC = () => {
 
                 <div className={clsx(styles.item, styles.itemQuantity)}>
                   <span className={styles.quantityTitle}>
-                    Available to buy: {availableShares && availableShares} ft²
+                    Available to buy: {stageAvailableShares.isSuccess && Number(stageAvailableShares.data)} ft²
                   </span>
                   <div className={styles.quantityContainer}>
                     <span className={styles.quantityText}>You&apos;re buying:</span>
                     <Counter
                       className={styles.quantitySelesctor}
                       min={1}
-                      max={availableShares}
+                      max={(stageAvailableShares.isSuccess && Number(stageAvailableShares.data)) || 1}
                       onChange={value => setQuantity(value)}
                     />
                     <span className={styles.quantityUnit}>ft²</span>
