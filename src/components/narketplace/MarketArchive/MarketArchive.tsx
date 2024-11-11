@@ -22,7 +22,7 @@ const MarketArchive: FC = () => {
 
   useEffect(() => {
     getObjectsList();
-  }, []);
+  }, [getObjectsList]);
 
   if (!objectsList) return null;
 
@@ -34,11 +34,7 @@ const MarketArchive: FC = () => {
             <Title size={'medium'} as={'h2'}>
               Objects
             </Title>
-            <TabButtons
-              buttons={getTabItems(objectsList).map(item => item.name)}
-              onClick={setCurrentItemIndex}
-              defaultItemIndex={0}
-            />
+            <TabButtons buttons={getTabItems(objectsList)} onClick={setCurrentItemIndex} defaultItemIndex={0} />
             <Button className={styles.howItWorksButton} isTransparent={true}>
               How it works <ArrowCircleIcon />
             </Button>

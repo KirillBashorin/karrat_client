@@ -1,11 +1,14 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
+import { useReadContract } from 'wagmi';
 
 import { Badge, Button, ProgressBar, Title } from '@/components/ui';
 import { ObjectType } from '@/types';
 
 import VoteIcon from '/public/images/icons/important.svg';
+
+import { Object } from '@/contracts';
 
 import styles from './ObjectUserNft.module.scss';
 
@@ -15,6 +18,13 @@ interface ObjectUserNftProps {
 }
 
 const ObjectUserNft: FC<ObjectUserNftProps> = ({ object, id }) => {
+  const tokenShares = useReadContract({
+    address: object.contractAddress,
+    abi: Object.abi,
+    functionName: 'tokenShares',
+    args: [id],
+  });
+
   return (
     <div className={styles.root}>
       <div className={styles.group}>
@@ -30,7 +40,7 @@ const ObjectUserNft: FC<ObjectUserNftProps> = ({ object, id }) => {
       <div className={clsx(styles.group, styles.details)}>
         <div>
           <span className={styles.detailsItemTitle}>Quantity</span>
-          <span className={styles.detailsItemValue}>100</span>
+          <span className={styles.detailsItemValue}>{tokenShares.isSuccess && String(tokenShares.data)}</span>
           <span className={styles.detailsItemUnit}>ft²</span>
         </div>
         <div>

@@ -15,6 +15,7 @@
   font-weight: 300;
   border: none;
   transition: $tr-all-default;
+  text-transform: capitalize;
 
   &.active {
     color: $white;

@@ -1,24 +1,14 @@
 import { ObjectType } from '@/types';
 
 const getTabItems = (objectsList: ObjectType[]) => {
-  const tabItems: { name: string; type: null | string }[] = [
-    {
-      name: 'All',
-      type: null,
-    },
-  ];
+  const tabItems: [string | null] = [null];
 
   if (!objectsList || objectsList.length === 0) return tabItems;
 
   objectsList.forEach(objectItem => {
-    if (tabItems.some(item => objectItem.type === item.type)) return;
+    if (tabItems.some(item => objectItem.type === item)) return;
 
-    const newTabItem = {
-      name: objectItem.type.slice(0, 1).toUpperCase() + objectItem.type.slice(1),
-      type: objectItem.type,
-    };
-
-    tabItems.push(newTabItem);
+    tabItems.push(objectItem.type);
   });
 
   return tabItems;
@@ -27,10 +17,10 @@ const getTabItems = (objectsList: ObjectType[]) => {
 const getFilteredObjects = (objectsList: ObjectType[], currentItemIndex: number) => {
   if (!objectsList) return [];
 
-  const tabItems = getTabItems(objectsList);
-  const currentType = getTabItems(objectsList)[currentItemIndex].type;
+  const tabs = getTabItems(objectsList);
+  const currentType = tabs[currentItemIndex];
 
-  return objectsList.slice().filter(item => currentType === null || item.type === tabItems[currentItemIndex].type);
+  return objectsList.slice().filter(item => currentType === null || item.type === currentType);
 };
 
 export { getTabItems, getFilteredObjects };

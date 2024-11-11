@@ -23,12 +23,9 @@ const YourNft: FC = () => {
   const account = useAccount();
 
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
-  const [yourNftData, setYourNftData] = useState<{ object: ObjectType; balance: bigint }[] | null>(null);
-
-  const filteredObjects = objectsList && getFilteredObjects(objectsList, currentItemIndex);
 
   const balanceOf = useReadContracts({
-    contracts: filteredObjects?.map(item => ({
+    contracts: objectsList?.map(item => ({
       address: item.contractAddress,
       abi: Object.abi,
       functionName: 'balanceOf',
@@ -36,61 +33,66 @@ const YourNft: FC = () => {
     })),
   });
 
+  const checkIsBalanceNotEmpty = () => {
+    if (!balanceOf || !balanceOf?.data) return false;
+
+    return balanceOf.data.some(item => item.result !== BigInt(0));
+  };
+
+  const filterObjectListByNotEmptyBalance = (objectsList: ObjectType[]) => {
+    if (!balanceOf || !balanceOf.data) return objectsList;
+
+    return objectsList.slice().filter((_, index) => Number(balanceOf.data[index].result) > 0);
+  };
+
   useEffect(() => {
     getObjectsList();
   }, [getObjectsList]);
-
-  useEffect(() => {
-    if (!balanceOf?.data || !objectsList) return;
-
-    const filteredArray = balanceOf.data.filter(item => item.result);
-
-    if (filteredArray.length === 0) return;
-
-    const fetchedYourNftData = filteredArray.map((item, index) => ({
-      object: objectsList[index],
-      balance: item.result as bigint,
-    }));
-
-    setYourNftData(fetchedYourNftData);
-  }, [balanceOf?.data, objectsList, currentItemIndex]);
 
   return (
     <section className={styles.root}>
       <Wrapper>
         <div className={styles.inner}>
           <div className={styles.heading}>
-            <Title>{yourNftData ? 'Your NFT' : "You don't have any NFT yet"}</Title>
-            {objectsList && yourNftData && (
+            <Title>
+              {balanceOf && balanceOf.data && checkIsBalanceNotEmpty() ? 'Your NFT' : "You don't have any NFT yet"}
+            </Title>
+            {objectsList && balanceOf && balanceOf.data && checkIsBalanceNotEmpty() && (
               <TabButtons
-                buttons={getTabItems(objectsList).map(item => item.name)}
+                buttons={getTabItems(filterObjectListByNotEmptyBalance(objectsList))}
                 onClick={setCurrentItemIndex}
                 defaultItemIndex={0}
               />
             )}
-            {yourNftData && (
-              <Button
-                className={styles.claimButton}
-                isTransparent={true}
-                isBright={true}
-                disabled={yourNftData.length <= 1}
-              >
-                Claim all
-                <ArrowCircleIcon />
-              </Button>
-            )}
-            {!yourNftData && (
+            {balanceOf &&
+              balanceOf.data &&
+              balanceOf.data.slice().filter(item => Number(item.result) > 0).length > 1 && (
+                <Button
+                  className={styles.claimButton}
+                  isTransparent={true}
+                  isBright={true}
+                  disabled={balanceOf.data.length <= 1}
+                >
+                  Claim all
+                  <ArrowCircleIcon />
+                </Button>
+              )}
+            {(!balanceOf || !checkIsBalanceNotEmpty()) && (
               <Button className={styles.claimButton} href={'/marketplace'} isTransparent={true} isBright={true}>
                 Buy NFT
                 <ArrowCircleIcon />
               </Button>
             )}
           </div>
-          {/*{yourNftData && yourNftData.length > 0 && (*/}
-          {objectsList && objectsList.length > 0 && (
+          {balanceOf && balanceOf.data && checkIsBalanceNotEmpty() && objectsList && objectsList.length > 0 && (
             <div className={styles.list}>
-              {/*<ObjectUserNft object={yourNftData[0].object} id={BigInt(1)} />*/}
-              <ObjectUserNft object={objectsList[0]} id={BigInt(1)} />
+              {getFilteredObjects(filterObjectListByNotEmptyBalance(objectsList), currentItemIndex).map(object =>
+                Array.from({ length: Number(balanceOf.data[objectsList.indexOf(object)].result) }).map(
+                  (_, tokenIndex) => (
+                    <ObjectUserNft object={object} id={BigInt(tokenIndex)} key={object.contractAddress + tokenIndex} />
+                  )
+                )
+              )}
             </div>
           )}
         </div>
