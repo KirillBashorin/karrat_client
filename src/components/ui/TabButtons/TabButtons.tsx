@@ -14,7 +14,7 @@ interface TabButtonsProps {
 const TabButtons: FC<TabButtonsProps> = ({ buttons, onClick, defaultItemIndex }) => {
   const [currentItemIndex, setCurrentItemIndex] = useState(defaultItemIndex || 0);
   if (!buttons || !buttons.length) return null;
-  // if (buttons.length < 3) return null;
+  if (buttons.length < 3) return null;
 
   const handleButtonClick = (index: number) => {
     setCurrentItemIndex(index);

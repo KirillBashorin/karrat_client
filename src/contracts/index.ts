@@ -1,3 +1,4 @@
 import Object from './Object';
+import EarningPool from './EarningPool';
 
-export { Object };
+export { Object, EarningPool };

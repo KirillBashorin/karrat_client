@@ -1,4 +1,4 @@
 import YourNft from './YourNft/YourNft';
-import ObjectUserNft from './ObjectNft/ObjectUserNft';
+import ObjectUserNft from './ObjectUserNft/ObjectUserNft';
 
 export { YourNft, ObjectUserNft };

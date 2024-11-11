@@ -89,7 +89,7 @@ const YourNft: FC = () => {
               {getFilteredObjects(filterObjectListByNotEmptyBalance(objectsList), currentItemIndex).map(object =>
                 Array.from({ length: Number(balanceOf.data[objectsList.indexOf(object)].result) }).map(
                   (_, tokenIndex) => (
-                    <ObjectUserNft object={object} id={BigInt(tokenIndex)} key={object.contractAddress + tokenIndex} />
+                    <ObjectUserNft object={object} id={tokenIndex + 1} key={object.contractAddress + tokenIndex} />
                   )
                 )
               )}
