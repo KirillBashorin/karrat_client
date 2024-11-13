@@ -6,12 +6,13 @@ import clsx from 'clsx';
 import styles from './TabButtons.module.scss';
 
 interface TabButtonsProps {
-  buttons: [string | null];
+  className?: string;
+  buttons: (string | null)[];
   onClick: (index: number) => void;
   defaultItemIndex?: number;
 }
 
-const TabButtons: FC<TabButtonsProps> = ({ buttons, onClick, defaultItemIndex }) => {
+const TabButtons: FC<TabButtonsProps> = ({ className, buttons, onClick, defaultItemIndex }) => {
   const [currentItemIndex, setCurrentItemIndex] = useState(defaultItemIndex || 0);
   if (!buttons || !buttons.length) return null;
   if (buttons.length < 3) return null;
@@ -23,7 +24,7 @@ const TabButtons: FC<TabButtonsProps> = ({ buttons, onClick, defaultItemIndex })
   };
 
   return (
-    <div className={styles.root}>
+    <div className={clsx(className, styles.root)}>
       {buttons &&
         buttons.length > 0 &&
         buttons.map((item, index) => (

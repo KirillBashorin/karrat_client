@@ -1,14 +1,13 @@
-'use client';
-
 import React, { FC } from 'react';
 
-import { Wrapper } from '@/components/layout';
+import { MainInfo, ContractTabs } from '@/components/admin-panel';
 
 const AdminPanel: FC = () => {
   return (
-    <section>
-      <Wrapper>admin panel page</Wrapper>
-    </section>
+    <>
+      <MainInfo />
+      {/*<ContractTabs />*/}
+    </>
   );
 };
 

@@ -1,0 +1,16 @@
+.root {
+  background-color: $grey-900;
+  height: 100%;
+}
+
+.inner {
+  padding: $indent-xl 0;
+
+  @include vp-tablet {
+    padding: $indent-2xl 0;
+  }
+}
+
+.tabButtons {
+  margin: 0 auto;
+}
