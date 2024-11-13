@@ -1,12 +1,14 @@
 'use client';
 
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useAccount, useReadContract } from 'wagmi';
 import { useAppKit } from '@reown/appkit/react';
+import { useShallow } from 'zustand/react/shallow';
 
 import { Wrapper } from '@/components/layout';
 import { Button, Title } from '@/components/ui';
 import { AccessRoles, OwnersMultisig } from '@/contracts';
+import { useAdminPanelStore } from '@/stores';
 
 import styles from './MainInfo.module.scss';
 
@@ -14,38 +16,47 @@ const MainInfo: FC = () => {
   const account = useAccount();
   const { open } = useAppKit();
 
-  const isSigner = useReadContract({
+  const { isSigner, isAdmin, setIsSigner, setIsAdmin } = useAdminPanelStore(
+    useShallow(state => ({
+      isSigner: state.isSigner,
+      isAdmin: state.isAdmin,
+      setIsSigner: state.setIsSigner,
+      setIsAdmin: state.setIsAdmin,
+    }))
+  );
+
+  const signers = useReadContract({
     address: OwnersMultisig.address,
     abi: OwnersMultisig.abi,
     functionName: 'signers',
     args: [account.address],
   });
 
-  const isAdmin = useReadContract({
+  const administrators = useReadContract({
     address: AccessRoles.address,
     abi: AccessRoles.abi,
     functionName: 'administrators',
     args: [account.address],
   });
 
-  console.log('isSigner', isSigner.data);
-  console.log('isAdmin', isAdmin.data);
+  useEffect(() => {
+    if (typeof signers.data !== 'boolean' || typeof administrators.data !== 'boolean') return;
+
+    setIsSigner(signers.data);
+    setIsAdmin(administrators.data);
+  }, [signers.data, administrators.data]);
 
   return (
     <section className={styles.root}>
       <Wrapper>
         <div className={styles.inner}>
-          {account.address && (
+          {account.address && typeof isSigner === 'boolean' && typeof isAdmin === 'boolean' && (
             <Title className={styles.title} size={'medium'} as={'h2'}>
               Hello,{' '}
               <span>
-                {isSigner.isSuccess && isAdmin.isSuccess && (
-                  <>
-                    {isSigner.data && 'signer!'}
-                    {isAdmin.data && 'admin!'}
-                    {!isSigner.data && !isAdmin.data && 'user! Your are not allowed to this page'}
-                  </>
-                )}
+                {isSigner && 'signer!'}
+                {isAdmin && 'admin!'}
+                {!isSigner && !isAdmin && 'user! Your are not allowed to this page'}
               </span>
             </Title>
           )}
