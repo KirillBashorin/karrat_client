@@ -3,9 +3,11 @@
 import React, { FC, useState } from 'react';
 import { useReadContract, useWriteContract } from 'wagmi';
 import { isAddress, encodeFunctionData } from 'viem';
+import { useShallow } from 'zustand/react/shallow';
 
 import { Button, Input } from '@/components/ui';
 import { AccessRoles as AccessRolesContract, OwnersMultisig } from '@/contracts';
+import { useErrorStore } from '@/stores';
 
 import styles from './AccessRoles.module.scss';
 
@@ -14,6 +16,12 @@ const AccessRoles: FC = () => {
   const [configurableAddressValue, setConfigurableAddressValue] = useState('');
   const [isAddAdminRights, setIsAddAdminRights] = useState(false);
 
+  const { setErrorMessage } = useErrorStore(
+    useShallow(state => ({
+      setErrorMessage: state.setErrorMessage,
+    }))
+  );
+
   const administrators = useReadContract({
     address: AccessRolesContract.address,
     abi: AccessRolesContract.abi,
@@ -21,7 +29,7 @@ const AccessRoles: FC = () => {
     args: [checkAddressValue],
   });
 
-  const { writeContract, failureReason: writeContractFailureReason } = useWriteContract();
+  const { writeContract } = useWriteContract();
 
   const handleSetAdministratorClick = () => {
     if (!isAddress(configurableAddressValue)) return;
@@ -32,12 +40,17 @@ const AccessRoles: FC = () => {
       args: [configurableAddressValue, isAddAdminRights],
     });
 
-    writeContract({
-      address: OwnersMultisig.address,
-      abi: OwnersMultisig.abi,
-      functionName: 'submitTransaction',
-      args: [AccessRolesContract.address, 0, setAdministratorData],
-    });
+    writeContract(
+      {
+        address: OwnersMultisig.address,
+        abi: OwnersMultisig.abi,
+        functionName: 'submitTransaction',
+        args: [AccessRolesContract.address, 0, setAdministratorData],
+      },
+      {
+        onError: error => setErrorMessage(String(error)),
+      }
+    );
   };
 
   return (
@@ -71,7 +84,6 @@ const AccessRoles: FC = () => {
         <Button disabled={!isAddress(configurableAddressValue)} onClick={handleSetAdministratorClick}>
           Submit
         </Button>
-        {writeContractFailureReason && String(writeContractFailureReason)}
       </div>
     </div>
   );

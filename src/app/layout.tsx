@@ -3,7 +3,7 @@ import { Manrope } from 'next/font/google';
 
 import { AppProvider, Web3ModalProvider } from '@/providers';
 import { Header, Footer } from '@/components/layout';
-import { PurchaseModal } from '@/components/common';
+import { ErrorBox, PurchaseModal } from '@/components/common';
 
 import type { Metadata } from 'next';
 
@@ -32,6 +32,7 @@ const RootLayout: FC<IRootLayoutProps> = ({ children }) => {
                 <main>
                   {children}
                   <PurchaseModal />
+                  <ErrorBox />
                 </main>
                 <Footer />
               </AppProvider>

@@ -12,8 +12,8 @@ type Action = {
   closePurchaseModal: () => void;
 };
 
-const useObjectsStore = create<State & Action>()(
-  devtools((set, get) => ({
+const useModalStore = create<State & Action>()(
+  devtools(set => ({
     isPurchaseModalOpen: false,
     purchaseModalObjectAddress: null,
     openPurchaseModal: (contractAddress: Address) => {
@@ -24,4 +24,4 @@ const useObjectsStore = create<State & Action>()(
   }))
 );
 
-export default useObjectsStore;
+export default useModalStore;

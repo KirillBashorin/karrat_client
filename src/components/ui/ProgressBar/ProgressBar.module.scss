@@ -11,7 +11,7 @@
   height: 100%;
   background: $primary-gradient;
   border-radius: $br-s;
-  transition: width $tr-default;
+  transition: width linear 100ms;
 }
 
 .medium {

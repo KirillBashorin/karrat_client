@@ -10,6 +10,7 @@ import ObjectPreview from './ObjectPreview/ObjectPreview';
 import ObjectsGrid from './ObjectsGrid/ObjectsGrid';
 import PurchaseModal from './PurchaseModal/PurchaseModal';
 import TokenSelect from './TokenSelect/TokenSelect';
+import ErrorBox from './ErrorBox/ErrorBox';
 
 export {
   Logo,
@@ -24,4 +25,5 @@ export {
   ObjectsGrid,
   PurchaseModal,
   TokenSelect,
+  ErrorBox,
 };
