@@ -1,0 +1,9 @@
+.root {
+  @include card;
+  color: $white;
+  padding: $indent-3xs $indent-2xs;
+}
+
+.invalid {
+  outline: 1px solid coral;
+}

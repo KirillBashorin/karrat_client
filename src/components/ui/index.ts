@@ -8,5 +8,6 @@ import ProgressBar from './ProgressBar/ProgressBar';
 import Gallery from './Gallery/Gallery';
 import Counter from './Counter/Counter';
 import TabButtons from './TabButtons/TabButtons';
+import Input from './Input/Input';
 
-export { Button, Title, Accordion, AccordionItem, Badge, Spinner, ProgressBar, Gallery, Counter, TabButtons };
+export { Button, Title, Accordion, AccordionItem, Badge, Spinner, ProgressBar, Gallery, Counter, TabButtons, Input };

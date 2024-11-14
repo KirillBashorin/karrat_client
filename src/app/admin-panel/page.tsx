@@ -6,7 +6,7 @@ const AdminPanel: FC = () => {
   return (
     <>
       <MainInfo />
-      {/*<ContractTabs />*/}
+      <ContractTabs />
     </>
   );
 };

@@ -4,6 +4,7 @@ import React, { FC, useState } from 'react';
 
 import { Wrapper } from '@/components/layout';
 import { TabButtons } from '@/components/ui';
+import { AccessRoles } from '@/components/admin-panel';
 
 import styles from './ContractTabs.module.scss';
 
@@ -12,16 +13,16 @@ const ContractTabs: FC = () => {
 
   const tabs = [
     {
-      button: 'Contract 1',
-      content: <>123</>,
+      button: 'AccessRoles',
+      content: <AccessRoles />,
     },
     {
-      button: 'Contract 2',
-      content: <>345</>,
+      button: 'ObjectFactory',
+      content: <>ObjectFactory</>,
     },
     {
-      button: 'Contract 3',
-      content: <>678</>,
+      button: 'Pause',
+      content: <>Pause</>,
     },
   ];
 

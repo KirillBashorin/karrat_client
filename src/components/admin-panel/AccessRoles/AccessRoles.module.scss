@@ -1,0 +1,25 @@
+.root {
+  padding: $indent-m 0;
+
+  @include vp-tablet {
+    padding: $indent-2xl 0;
+  }
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $indent-3xs;
+
+  &:not(:last-child) {
+    margin-bottom: $indent-2xs;
+  }
+}
+
+.itemTitle {
+  width: 100%;
+}
+
+.input {
+  min-width: 50%;
+}
