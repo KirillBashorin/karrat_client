@@ -12,6 +12,7 @@ import LogoutIcon from '/public/images/icons/logout.svg';
 import { Wrapper } from '@/components/layout';
 import { Logo, TokenSelect } from '@/components/common';
 import { Button } from '@/components/ui';
+import { minifyAddress } from '@/utils';
 
 import ArrowCircleSVG from '/public/images/icons/arrow-circle.svg';
 
@@ -24,12 +25,10 @@ const AccountButton = () => {
   return (
     <div className={styles.account}>
       <Button href={'/account/'} isTransparent={true}>
-        {account.isConnected && (
+        {account.isConnected && account.address && (
           <>
             <MetaMaskAvatar className={styles.avatar} address={account.address || ''} size={24} />
-            <span>
-              {account.address?.slice(0, 4)}..{account.address?.slice(-4, -1)}
-            </span>
+            <span>{minifyAddress(account.address)}</span>
           </>
         )}
         {!account.isConnected && 'Account'}

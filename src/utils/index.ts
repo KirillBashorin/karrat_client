@@ -1,4 +1,10 @@
+import { Address } from 'viem';
+
 import { ObjectType } from '@/types';
+
+const minifyAddress = (address: Address) => {
+  return `${address.slice(0, 4)}..${address.slice(-4)}`;
+};
 
 const getTabItems = (objectsList: ObjectType[]) => {
   const tabItems: [string | null] = [null];
@@ -23,4 +29,4 @@ const getFilteredObjects = (objectsList: ObjectType[], currentItemIndex: number)
   return objectsList.slice().filter(item => currentType === null || item.type === currentType);
 };
 
-export { getTabItems, getFilteredObjects };
+export { minifyAddress, getTabItems, getFilteredObjects };
