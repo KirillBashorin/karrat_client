@@ -1,15 +1,24 @@
 'use client';
 
 import React, { FC, useState } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 
 import { Wrapper } from '@/components/layout';
 import { TabButtons } from '@/components/ui';
 import { AccessRoles } from '@/components/admin-panel';
+import { useAdminPanelStore } from '@/stores';
 
 import styles from './ContractTabs.module.scss';
 
 const ContractTabs: FC = () => {
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
+
+  const { isSigner, isAdmin } = useAdminPanelStore(
+    useShallow(state => ({
+      isSigner: state.isSigner,
+      isAdmin: state.isAdmin,
+    }))
+  );
 
   const tabs = [
     {
@@ -25,6 +34,8 @@ const ContractTabs: FC = () => {
       content: <>Pause</>,
     },
   ];
+
+  if (!isSigner && !isAdmin) return null;
 
   return (
     <section className={styles.root}>

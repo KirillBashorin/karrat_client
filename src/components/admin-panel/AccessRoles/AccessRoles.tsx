@@ -7,7 +7,7 @@ import { useShallow } from 'zustand/react/shallow';
 
 import { Button, Input } from '@/components/ui';
 import { AccessRoles as AccessRolesContract, OwnersMultisig } from '@/contracts';
-import { useErrorStore } from '@/stores';
+import { useAdminPanelStore, useErrorStore } from '@/stores';
 
 import styles from './AccessRoles.module.scss';
 
@@ -15,6 +15,13 @@ const AccessRoles: FC = () => {
   const [checkAddressValue, setCheckAddressValue] = useState('');
   const [configurableAddressValue, setConfigurableAddressValue] = useState('');
   const [isAddAdminRights, setIsAddAdminRights] = useState(false);
+
+  const { isSigner, isAdmin } = useAdminPanelStore(
+    useShallow(state => ({
+      isSigner: state.isSigner,
+      isAdmin: state.isAdmin,
+    }))
+  );
 
   const { setErrorMessage } = useErrorStore(
     useShallow(state => ({
@@ -69,22 +76,28 @@ const AccessRoles: FC = () => {
         )}
       </div>
 
-      <div className={styles.item}>
-        <span className={styles.itemTitle}>Set administrator rights for the address</span>
-        <Input
-          className={styles.input}
-          placeholder={'Enter address'}
-          value={configurableAddressValue}
-          onChange={evt => setConfigurableAddressValue(evt.target.value)}
-          isInvalid={configurableAddressValue ? !isAddress(configurableAddressValue) : false}
-        />
-        <Button isTransparent={true} isBright={isAddAdminRights} onClick={() => setIsAddAdminRights(!isAddAdminRights)}>
-          Admin
-        </Button>
-        <Button disabled={!isAddress(configurableAddressValue)} onClick={handleSetAdministratorClick}>
-          Submit
-        </Button>
-      </div>
+      {isSigner && (
+        <div className={styles.item}>
+          <span className={styles.itemTitle}>Set administrator rights for the address</span>
+          <Input
+            className={styles.input}
+            placeholder={'Enter address'}
+            value={configurableAddressValue}
+            onChange={evt => setConfigurableAddressValue(evt.target.value)}
+            isInvalid={configurableAddressValue ? !isAddress(configurableAddressValue) : false}
+          />
+          <Button
+            isTransparent={true}
+            isBright={isAddAdminRights}
+            onClick={() => setIsAddAdminRights(!isAddAdminRights)}
+          >
+            Admin
+          </Button>
+          <Button disabled={!isAddress(configurableAddressValue)} onClick={handleSetAdministratorClick}>
+            Submit
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
