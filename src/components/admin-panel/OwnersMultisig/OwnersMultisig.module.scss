@@ -55,18 +55,36 @@
     align-items: center;
 
     &:not(:last-of-type) {
-      border-right: 1px solid $grey-600;
+      border-bottom: 1px solid $grey-600;
+    }
+
+    @include vp-tablet-landscape {
+      &:not(:last-of-type) {
+        border: none;
+        border-right: 1px solid $grey-600;
+      }
     }
   }
 }
 
+
 .transactionsListHeader {
+  display: none;
   background-color: $grey-700;
   border-radius: $br-m $br-m 0 0;
+
+  @include vp-tablet-landscape {
+    display: flex;
+  }
 }
 
 .transactionItem {
+  flex-direction: column;
   background-color: $grey-800;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $grey-600;
+  }
 
   & > div {
     position: relative;
@@ -78,8 +96,25 @@
     }
   }
 
-  &:last-of-type {
-    border-radius: 0 0 $br-m $br-m;
+  border-radius: $br-m;
+  margin-bottom: $indent-2xs;
+
+  @include vp-tablet-landscape {
+    flex-direction: row;
+    margin-bottom: 0;
+    border-radius: 0;
+
+    &:last-of-type {
+      border-radius: 0 0 $br-m $br-m;
+    }
+  }
+}
+
+.itemName {
+  color: $grey-400;
+
+  @include vp-tablet-landscape {
+    display: none;
   }
 }
 
@@ -88,17 +123,20 @@
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
   display: none;
   align-items: center;
-  width: fit-content;
-  min-width: 300px;
+  width: 100%;
   background-color: $grey-600;
   padding: $indent-2xs $indent-3xs;
-  max-width: 500px;
   overflow: hidden;
   white-space: pre-wrap;
   overflow-wrap: break-word;
   word-break: break-word;
+
+  @include vp-tablet-landscape {
+    width: 600px;
+  }
 }
 
 .signButton {

@@ -114,24 +114,42 @@ const TransactionItem: FC<{ txId: number }> = ({ txId }) => {
       }
     );
   };
-
+  // <div>Target</div>
+  // <div>Value</div>
+  // <div>Data</div>
+  // <div>Creator</div>
+  // <div>Executed</div>
+  // <div>Confirmations count</div>
+  // <div>Sign</div>
   return (
     <div className={styles.transactionItem}>
       <div>
+        <div className={styles.itemName}>Target - </div>
         {targetContract?.name || minifyAddress(targetAddress)}
         <div className={styles.itemInfo}>{targetAddress}</div>
       </div>
-      <div>{value}</div>
       <div>
+        <div className={styles.itemName}>Value - </div>
+        {value}
+      </div>
+      <div>
+        <div className={styles.itemName}>Data - </div>
         {data.slice(0, 8)}..
         <div className={styles.itemInfo}>{decodeData(data)}</div>
       </div>
       <div>
+        <div className={styles.itemName}>Creator - </div>
         {minifyAddress(creator)}
         <div className={styles.itemInfo}>{creator}</div>
       </div>
-      <div>{String(executed)}</div>
-      <div>{confirmationsCount}</div>
+      <div>
+        <div className={styles.itemName}>Executed - </div>
+        {String(executed)}
+      </div>
+      <div>
+        <div className={styles.itemName}>Confirmations count - </div>
+        {confirmationsCount}
+      </div>
       <div>
         {!executed && !alreadySigned && (
           <Button className={styles.signButton} onClick={acceptTransaction} disabled={alreadySigned}>
