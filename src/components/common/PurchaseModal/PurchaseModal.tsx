@@ -16,7 +16,7 @@ import { useTransactionsTokenStore, useModalStore } from '@/stores';
 import { useObjectsStore } from '@/stores';
 import { Badge, Title, Button, Gallery, Spinner, Counter } from '@/components/ui';
 import ProgressBar from '@/components/ui/ProgressBar/ProgressBar';
-import { Object } from '@/contracts';
+import { ObjectContract } from '@/contracts';
 
 import styles from './PurchaseModal.module.scss';
 
@@ -67,7 +67,7 @@ const PurchaseModal: FC = () => {
     writeContract(
       {
         address: transactionsToken.address,
-        abi: Object.abi,
+        abi: ObjectContract.abi,
         functionName: 'approve',
         args: [purchaseModalObjectAddress, getMaxPayTokenAmount()],
       },
@@ -84,7 +84,7 @@ const PurchaseModal: FC = () => {
     writeContract(
       {
         address: purchaseModalObjectAddress,
-        abi: Object.abi,
+        abi: ObjectContract.abi,
         functionName: 'buyShares',
         args: [quantity, transactionsToken?.address, getMaxPayTokenAmount(), zeroAddress],
       },
@@ -103,7 +103,7 @@ const PurchaseModal: FC = () => {
 
   const contractData = {
     address: purchaseModalObjectAddress || undefined,
-    abi: Object.abi,
+    abi: ObjectContract.abi,
   };
 
   const estimateBuySharesToken = useReadContract({

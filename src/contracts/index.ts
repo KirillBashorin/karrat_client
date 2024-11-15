@@ -1,6 +1,6 @@
-import Object from './Object';
-import EarningPool from './EarningPool';
-import AccessRoles from './AccessRoles';
-import OwnersMultisig from './OwnersMultisig';
+import ObjectContract from './ObjectContract';
+import EarningPoolContract from './EarningPoolContract';
+import AccessRolesContract from './AccessRolesContract';
+import OwnersMultisigContract from './OwnersMultisigContract';
 
-export { Object, EarningPool, AccessRoles, OwnersMultisig };
+export { ObjectContract, EarningPoolContract, AccessRolesContract, OwnersMultisigContract };

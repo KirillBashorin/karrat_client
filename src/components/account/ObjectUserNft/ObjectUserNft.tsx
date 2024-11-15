@@ -7,7 +7,7 @@ import { formatUnits } from 'viem';
 
 import { Badge, Button, ProgressBar, Title } from '@/components/ui';
 import { ObjectType } from '@/types';
-import { EarningPool, Object } from '@/contracts';
+import { EarningPoolContract, ObjectContract } from '@/contracts';
 
 import VoteIcon from '/public/images/icons/important.svg';
 
@@ -31,12 +31,12 @@ const ObjectUserNft: FC<ObjectUserNftProps> = ({ object, id }) => {
 
   const objectContractData = {
     address: object.contractAddress,
-    abi: Object.abi,
+    abi: ObjectContract.abi,
   };
 
   const earningPoolContractData = {
-    address: EarningPool.address,
-    abi: EarningPool.abi,
+    address: EarningPoolContract.address,
+    abi: EarningPoolContract.abi,
   };
 
   const tokenShares = useReadContract({

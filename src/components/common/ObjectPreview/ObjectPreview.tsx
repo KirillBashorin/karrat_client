@@ -8,7 +8,7 @@ import { useAccount } from 'wagmi';
 
 import { Badge, Spinner, Title } from '@/components/ui';
 import { useModalStore, useTransactionsTokenStore } from '@/stores';
-import { Object } from '@/contracts';
+import { ObjectContract } from '@/contracts';
 
 import styles from './ObjectPreview.module.scss';
 
@@ -37,7 +37,7 @@ const ObjectPreview: FC<ObjectPreviewProps> = ({ className, object, isSmall }) =
 
   const estimateBuySharesToken = useReadContract({
     address: object.contractAddress,
-    abi: Object.abi,
+    abi: ObjectContract.abi,
     functionName: 'estimateBuySharesToken',
     args: [account.address || zeroAddress, 1, transactionsToken?.address],
   });

@@ -1,12 +1,12 @@
 import { Address, Abi } from 'viem';
 
-interface IAccessRoles {
+interface IEarningPool {
   address: Address;
   abi: Abi;
 }
 
-const AccessRoles: IAccessRoles = {
-  address: '0x529d912E5280CFC1AD612e40966E4C634DDf15c2',
+const EarningPoolContract: IEarningPool = {
+  address: '0x78667Ae8549415Fa1CA21E43eE8e6741a71EEDbE',
   abi: [
     {
       anonymous: false,
@@ -66,6 +66,43 @@ const AccessRoles: IAccessRoles = {
       inputs: [
         {
           indexed: false,
+          internalType: 'address',
+          name: 'recipient',
+          type: 'address',
+        },
+        {
+          indexed: false,
+          internalType: 'contract IObject',
+          name: 'object',
+          type: 'address',
+        },
+        {
+          indexed: false,
+          internalType: 'uint256',
+          name: 'tokenId',
+          type: 'uint256',
+        },
+        {
+          indexed: false,
+          internalType: 'contract IERC20',
+          name: 'payToken',
+          type: 'address',
+        },
+        {
+          indexed: false,
+          internalType: 'uint256',
+          name: 'payTokenAmount',
+          type: 'uint256',
+        },
+      ],
+      name: 'ClaimObjectRewards',
+      type: 'event',
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: false,
           internalType: 'uint8',
           name: 'version',
           type: 'uint8',
@@ -77,30 +114,79 @@ const AccessRoles: IAccessRoles = {
     {
       inputs: [
         {
-          internalType: 'address',
-          name: 'account',
+          internalType: 'contract IObject',
+          name: '_object',
+          type: 'address',
+        },
+        {
+          internalType: 'uint256',
+          name: '_tokenId',
+          type: 'uint256',
+        },
+        {
+          internalType: 'contract IERC20',
+          name: '_payToken',
+          type: 'address',
+        },
+        {
+          internalType: 'uint256',
+          name: '_minPayTokenAmount',
+          type: 'uint256',
+        },
+      ],
+      name: 'claimObjectRewards',
+      outputs: [],
+      stateMutability: 'nonpayable',
+      type: 'function',
+    },
+    {
+      inputs: [
+        {
+          internalType: 'contract IObject',
+          name: '_object',
+          type: 'address',
+        },
+        {
+          internalType: 'uint256',
+          name: '_tokenId',
+          type: 'uint256',
+        },
+        {
+          internalType: 'contract IERC20',
+          name: '_payToken',
           type: 'address',
         },
       ],
-      name: 'administrators',
+      name: 'estimateClaimObjectRewardsToken',
       outputs: [
         {
-          internalType: 'bool',
+          internalType: 'uint256',
           name: '',
-          type: 'bool',
+          type: 'uint256',
         },
       ],
       stateMutability: 'view',
       type: 'function',
     },
     {
-      inputs: [],
-      name: 'deployer',
+      inputs: [
+        {
+          internalType: 'contract IObject',
+          name: '_object',
+          type: 'address',
+        },
+        {
+          internalType: 'uint256',
+          name: '_tokenId',
+          type: 'uint256',
+        },
+      ],
+      name: 'estimateClaimObjectRewardsUSD',
       outputs: [
         {
-          internalType: 'address',
+          internalType: 'uint256',
           name: '',
-          type: 'address',
+          type: 'uint256',
         },
       ],
       stateMutability: 'view',
@@ -110,13 +196,8 @@ const AccessRoles: IAccessRoles = {
       inputs: [
         {
           internalType: 'address',
-          name: '_ownersMultisig',
+          name: '_addressBook',
           type: 'address',
-        },
-        {
-          internalType: 'address[]',
-          name: '_administrators',
-          type: 'address[]',
         },
       ],
       name: 'initialize',
@@ -125,16 +206,22 @@ const AccessRoles: IAccessRoles = {
       type: 'function',
     },
     {
-      inputs: [],
-      name: 'ownersMultisig',
-      outputs: [
+      inputs: [
         {
-          internalType: 'contract IMultisigWallet',
-          name: '',
-          type: 'address',
+          internalType: 'bytes[]',
+          name: 'data',
+          type: 'bytes[]',
         },
       ],
-      stateMutability: 'view',
+      name: 'multicall',
+      outputs: [
+        {
+          internalType: 'bytes[]',
+          name: 'results',
+          type: 'bytes[]',
+        },
+      ],
+      stateMutability: 'nonpayable',
       type: 'function',
     },
     {
@@ -148,96 +235,6 @@ const AccessRoles: IAccessRoles = {
         },
       ],
       stateMutability: 'view',
-      type: 'function',
-    },
-    {
-      inputs: [],
-      name: 'renounceDeployer',
-      outputs: [],
-      stateMutability: 'nonpayable',
-      type: 'function',
-    },
-    {
-      inputs: [
-        {
-          internalType: 'address',
-          name: '_account',
-          type: 'address',
-        },
-      ],
-      name: 'requireAdministrator',
-      outputs: [],
-      stateMutability: 'view',
-      type: 'function',
-    },
-    {
-      inputs: [
-        {
-          internalType: 'address',
-          name: '_account',
-          type: 'address',
-        },
-      ],
-      name: 'requireDeployer',
-      outputs: [],
-      stateMutability: 'view',
-      type: 'function',
-    },
-    {
-      inputs: [
-        {
-          internalType: 'address',
-          name: '_account',
-          type: 'address',
-        },
-      ],
-      name: 'requireOwnersMultisig',
-      outputs: [],
-      stateMutability: 'view',
-      type: 'function',
-    },
-    {
-      inputs: [
-        {
-          internalType: 'address',
-          name: '_administrator',
-          type: 'address',
-        },
-        {
-          internalType: 'bool',
-          name: '_value',
-          type: 'bool',
-        },
-      ],
-      name: 'setAdministrator',
-      outputs: [],
-      stateMutability: 'nonpayable',
-      type: 'function',
-    },
-    {
-      inputs: [
-        {
-          internalType: 'address',
-          name: '_deployer',
-          type: 'address',
-        },
-      ],
-      name: 'setDeployer',
-      outputs: [],
-      stateMutability: 'nonpayable',
-      type: 'function',
-    },
-    {
-      inputs: [
-        {
-          internalType: 'address',
-          name: '_ownersMultisig',
-          type: 'address',
-        },
-      ],
-      name: 'setOwnersMultisig',
-      outputs: [],
-      stateMutability: 'nonpayable',
       type: 'function',
     },
     {
@@ -274,6 +271,24 @@ const AccessRoles: IAccessRoles = {
     {
       inputs: [
         {
+          internalType: 'contract IERC20',
+          name: '_token',
+          type: 'address',
+        },
+        {
+          internalType: 'uint256',
+          name: '_amount',
+          type: 'uint256',
+        },
+      ],
+      name: 'withdrawToTreasury',
+      outputs: [],
+      stateMutability: 'nonpayable',
+      type: 'function',
+    },
+    {
+      inputs: [
+        {
           internalType: 'address',
           name: '_logic',
           type: 'address',
@@ -290,4 +305,4 @@ const AccessRoles: IAccessRoles = {
   ],
 };
 
-export default AccessRoles;
+export default EarningPoolContract;

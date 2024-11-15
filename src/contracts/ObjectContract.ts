@@ -4,7 +4,7 @@ interface IObject {
   abi: Abi;
 }
 
-const Object: IObject = {
+const ObjectContract: IObject = {
   abi: [
     {
       inputs: [],
@@ -1549,4 +1549,4 @@ const Object: IObject = {
   ],
 };
 
-export default Object;
+export default ObjectContract;

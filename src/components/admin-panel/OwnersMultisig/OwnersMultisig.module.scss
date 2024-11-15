@@ -1,0 +1,98 @@
+.root {
+  padding: $indent-m 0;
+
+  @include vp-tablet {
+    padding: $indent-2xl 0;
+  }
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $indent-3xs;
+
+  &:not(:last-child) {
+    margin-bottom: $indent-2xs;
+  }
+}
+
+.itemTitle {
+  width: 100%;
+}
+
+.input {
+  min-width: 50%;
+}
+
+.transactionsTitle {
+  display: block;
+  margin-bottom: $indent-3xs;
+}
+
+.transactionsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.transactionsListHeader,
+.transactionItem {
+  display: flex;
+
+  & > div {
+    padding: $indent-2xs $indent-3xs;
+    display: flex;
+    gap: $indent-5xs;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+
+    &:not(:last-of-type) {
+      border-right: 1px solid $grey-600;
+    }
+  }
+}
+
+.transactionsListHeader {
+  background-color: $grey-700;
+  border-radius: $br-m $br-m 0 0;
+}
+
+.transactionItem {
+  background-color: $grey-800;
+
+  & > div {
+    position: relative;
+
+    &:hover {
+      .itemInfo {
+        display: flex;
+      }
+    }
+  }
+
+  &:last-of-type {
+    border-radius: 0 0 $br-m $br-m;
+  }
+}
+
+.itemInfo {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  align-items: center;
+  width: fit-content;
+  min-width: 300px;
+  background-color: $grey-600;
+  padding: $indent-2xs $indent-3xs;
+  max-width: 500px;
+  overflow: hidden;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.signButton {
+  width: 100%;
+}

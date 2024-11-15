@@ -7,7 +7,7 @@ import { useShallow } from 'zustand/react/shallow';
 
 import { Wrapper } from '@/components/layout';
 import { Button, Title } from '@/components/ui';
-import { AccessRoles, OwnersMultisig } from '@/contracts';
+import { AccessRolesContract, OwnersMultisigContract } from '@/contracts';
 import { useAdminPanelStore } from '@/stores';
 
 import styles from './MainInfo.module.scss';
@@ -26,15 +26,15 @@ const MainInfo: FC = () => {
   );
 
   const signers = useReadContract({
-    address: OwnersMultisig.address,
-    abi: OwnersMultisig.abi,
+    address: OwnersMultisigContract.address,
+    abi: OwnersMultisigContract.abi,
     functionName: 'signers',
     args: [account.address],
   });
 
   const administrators = useReadContract({
-    address: AccessRoles.address,
-    abi: AccessRoles.abi,
+    address: AccessRolesContract.address,
+    abi: AccessRolesContract.abi,
     functionName: 'administrators',
     args: [account.address],
   });

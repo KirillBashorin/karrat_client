@@ -5,7 +5,7 @@ import { useShallow } from 'zustand/react/shallow';
 
 import { Wrapper } from '@/components/layout';
 import { TabButtons } from '@/components/ui';
-import { AccessRoles } from '@/components/admin-panel';
+import { AccessRoles, OwnersMultisig } from '@/components/admin-panel';
 import { useAdminPanelStore } from '@/stores';
 
 import styles from './ContractTabs.module.scss';
@@ -21,6 +21,10 @@ const ContractTabs: FC = () => {
   );
 
   const tabs = [
+    {
+      button: 'OwnersMultisig',
+      content: <OwnersMultisig />,
+    },
     {
       button: 'AccessRoles',
       content: <AccessRoles />,

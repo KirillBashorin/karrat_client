@@ -6,7 +6,7 @@ import { isAddress, encodeFunctionData } from 'viem';
 import { useShallow } from 'zustand/react/shallow';
 
 import { Button, Input } from '@/components/ui';
-import { AccessRoles as AccessRolesContract, OwnersMultisig } from '@/contracts';
+import { AccessRolesContract, OwnersMultisigContract } from '@/contracts';
 import { useAdminPanelStore, useErrorStore } from '@/stores';
 
 import styles from './AccessRoles.module.scss';
@@ -16,10 +16,9 @@ const AccessRoles: FC = () => {
   const [configurableAddressValue, setConfigurableAddressValue] = useState('');
   const [isAddAdminRights, setIsAddAdminRights] = useState(false);
 
-  const { isSigner, isAdmin } = useAdminPanelStore(
+  const { isSigner } = useAdminPanelStore(
     useShallow(state => ({
       isSigner: state.isSigner,
-      isAdmin: state.isAdmin,
     }))
   );
 
@@ -49,8 +48,8 @@ const AccessRoles: FC = () => {
 
     writeContract(
       {
-        address: OwnersMultisig.address,
-        abi: OwnersMultisig.abi,
+        address: OwnersMultisigContract?.address,
+        abi: OwnersMultisigContract.abi,
         functionName: 'submitTransaction',
         args: [AccessRolesContract.address, 0, setAdministratorData],
       },

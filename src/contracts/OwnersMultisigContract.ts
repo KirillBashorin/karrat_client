@@ -5,7 +5,7 @@ interface IOwnersMultisig {
   abi: Abi;
 }
 
-const OwnersMultisig: IOwnersMultisig = {
+const OwnersMultisigContract: IOwnersMultisig = {
   address: '0x86C33a2aF71644c69d1321bcC53AD19b7ab86CcB',
   abi: [
     {
@@ -515,4 +515,4 @@ const OwnersMultisig: IOwnersMultisig = {
   ],
 };
 
-export default OwnersMultisig;
+export default OwnersMultisigContract;

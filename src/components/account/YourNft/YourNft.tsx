@@ -5,7 +5,7 @@ import { useAccount, useReadContracts } from 'wagmi';
 import { Wrapper } from '@/components/layout';
 import { Button, TabButtons, Title } from '@/components/ui';
 import { ObjectUserNft } from '@/components/account';
-import { Object } from '@/contracts';
+import { ObjectContract } from '@/contracts';
 
 import ArrowCircleIcon from '/public/images/icons/arrow-circle.svg';
 
@@ -27,7 +27,7 @@ const YourNft: FC = () => {
   const balanceOf = useReadContracts({
     contracts: objectsList?.map(item => ({
       address: item.contractAddress,
-      abi: Object.abi,
+      abi: ObjectContract.abi,
       functionName: 'balanceOf',
       args: [account?.address],
     })),
