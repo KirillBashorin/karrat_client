@@ -143,6 +143,11 @@ const TransactionItem: FC<{ txId: number }> = ({ txId }) => {
             Revoke
           </Button>
         )}
+        {executed && alreadySigned && (
+          <Button className={styles.signButton} onClick={acceptTransaction} disabled={alreadySigned}>
+            Signed
+          </Button>
+        )}
       </div>
     </div>
   );
@@ -189,7 +194,7 @@ const OwnersMultisig: FC = () => {
       </div>
 
       {txsCount.isSuccess && typeof txsCount.data === 'bigint' && (
-        <>
+        <div className={styles.transactions}>
           <span className={styles.transactionsTitle}>Transactions list</span>
           <div className={styles.transactionsList}>
             <div className={styles.transactionsListHeader}>
@@ -201,11 +206,11 @@ const OwnersMultisig: FC = () => {
               <div>Confirmations count</div>
               <div>Sign</div>
             </div>
-            {Array.from({ length: Number(txsCount.data) }).map((_, index) => (
-              <TransactionItem txId={index + 1} key={'transactionItem' + index} />
-            ))}
+            {Array.from({ length: Number(txsCount.data) })
+              .map((_, index) => <TransactionItem txId={index + 1} key={'transactionItem' + index} />)
+              .reverse()}
           </div>
-        </>
+        </div>
       )}
     </div>
   );

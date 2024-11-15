@@ -24,6 +24,14 @@
   min-width: 50%;
 }
 
+.transactions {
+  display: none;
+
+  &:has(.transactionItem) {
+    display: block;
+  }
+}
+
 .transactionsTitle {
   display: block;
   margin-bottom: $indent-3xs;
