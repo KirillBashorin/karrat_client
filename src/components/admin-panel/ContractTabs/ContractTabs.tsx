@@ -20,11 +20,10 @@ const ContractTabs: FC = () => {
     }))
   );
 
+  const signerTabs = [{ button: 'OwnersMultisig', content: <OwnersMultisig /> }];
+
   const tabs = [
-    {
-      button: 'OwnersMultisig',
-      content: <OwnersMultisig />,
-    },
+    ...(isSigner ? signerTabs : []),
     {
       button: 'AccessRoles',
       content: <AccessRoles />,
