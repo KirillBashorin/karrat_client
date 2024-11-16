@@ -1,0 +1,52 @@
+.root {
+  padding: $indent-m 0;
+
+  @include vp-tablet {
+    padding: $indent-2xl 0;
+  }
+}
+
+.inner {
+  display: grid;
+  gap: $indent-xs;
+
+  @include vp-tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: $indent-3xs;
+
+  &:not(:last-child) {
+    margin-bottom: $indent-2xs;
+  }
+}
+
+.subItem {
+  display: flex;
+  align-items: center;
+  gap: $indent-4xs;
+
+  & span {
+    flex: 1;
+  }
+}
+
+.itemTitle {
+  font-size: $font-l;
+  text-align: center;
+  width: 100%;
+  margin-bottom: $indent-3xs;
+}
+
+.input {
+  flex: 1;
+}
+
+.createButton {
+  width: 100%;
+}

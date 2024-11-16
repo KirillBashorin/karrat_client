@@ -5,7 +5,7 @@ import { useShallow } from 'zustand/react/shallow';
 
 import { Wrapper } from '@/components/layout';
 import { TabButtons } from '@/components/ui';
-import { AccessRoles, OwnersMultisig } from '@/components/admin-panel';
+import { AccessRoles, OwnersMultisig, ObjectFactory, Objects } from '@/components/admin-panel';
 import { useAdminPanelStore } from '@/stores';
 
 import styles from './ContractTabs.module.scss';
@@ -20,17 +20,23 @@ const ContractTabs: FC = () => {
     }))
   );
 
-  const signerTabs = [{ button: 'OwnersMultisig', content: <OwnersMultisig /> }];
+  const signerTabs = [
+    { button: 'OwnersMultisig', content: <OwnersMultisig /> },
+    {
+      button: 'ObjectFactory',
+      content: <ObjectFactory />,
+    },
+  ];
 
   const tabs = [
     ...(isSigner ? signerTabs : []),
     {
-      button: 'AccessRoles',
-      content: <AccessRoles />,
+      button: 'Objects',
+      content: <Objects />,
     },
     {
-      button: 'ObjectFactory',
-      content: <>ObjectFactory</>,
+      button: 'AccessRoles',
+      content: <AccessRoles />,
     },
     {
       button: 'Pause',

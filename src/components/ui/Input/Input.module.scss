@@ -4,6 +4,12 @@
   padding: $indent-3xs $indent-2xs;
 }
 
+.root[type="number"]::-webkit-outer-spin-button,
+.root[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .invalid {
   outline: 1px solid coral;
 }

@@ -1,0 +1,7 @@
+.root {
+  padding: $indent-m 0;
+
+  @include vp-tablet {
+    padding: $indent-2xl 0;
+  }
+}
