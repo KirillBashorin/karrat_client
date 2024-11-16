@@ -3,7 +3,7 @@
 import React, { FC, useState } from 'react';
 import { useWriteContract } from 'wagmi';
 import { useShallow } from 'zustand/react/shallow';
-import { encodeFunctionData } from 'viem';
+import { encodeFunctionData, parseUnits } from 'viem';
 
 import { Button, Input } from '@/components/ui';
 import { ObjectFactoryContract, OwnersMultisigContract } from '@/contracts';
@@ -62,7 +62,7 @@ const ObjectFactory: FC = () => {
         maxSharesStage,
         initialStageAvailableShares,
         initialStageStopTimestamp,
-        priceOneShareStage,
+        parseUnits(priceOneShareStage, 18),
         referralProgramEnabledStage,
       ],
     });
@@ -84,7 +84,7 @@ const ObjectFactory: FC = () => {
     const createFullSaleObjectData = encodeFunctionData({
       abi: ObjectFactoryContract.abi,
       functionName: 'createFullSaleObject',
-      args: [maxSharesFull, saleStopTimestampFull, priceOneShareFull, referralProgramEnabledFull],
+      args: [maxSharesFull, saleStopTimestampFull, parseUnits(priceOneShareFull, 18), referralProgramEnabledFull],
     });
 
     writeContract(
