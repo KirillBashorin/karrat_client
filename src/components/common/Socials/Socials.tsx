@@ -19,21 +19,21 @@ interface SocialsProps {
 const Socials: FC<SocialsProps> = ({ className, list, isTransparent }) => {
   const socials = {
     ['discord']: {
-      link: '#ds',
+      link: 'https://discord.gg/U9K7Rzqf',
       icons: {
         default: <DiscordIcon />,
         transparent: <DiscordIcon />,
       },
     },
     ['telegram']: {
-      link: '#tg',
+      link: 'https://t.me/karrat_estates',
       icons: {
         default: <TelegramIcon />,
         transparent: <TelegramTransparentIcon />,
       },
     },
     ['whatsapp']: {
-      link: '#wa',
+      link: 'https://wa.me/971585779091',
       icons: {
         default: <WhatsappTransparentIcon />,
         transparent: <WhatsappTransparentIcon />,

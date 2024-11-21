@@ -30,19 +30,19 @@ const Footer: FC = () => {
           <div className={styles.group}>
             <div className={styles.contacts}>
               <p className={styles.contactItem}>
-                <MapPinIcon /> 9 Harris Ways New Carrieview HU14 3EB
+                <MapPinIcon /> Dubai, Business Bay, The Court Tower, office 803
               </p>
-              <a className={styles.contactItem} href='tel:+180800000000'>
-                <PhoneIcon /> +1 8080 000 00 00
+              <a className={styles.contactItem} href='tel:+971585779091'>
+                <PhoneIcon /> +971 58 577 90 91
               </a>
-              <a className={styles.contactItem} href='mailto:karratestates@mail.com'>
-                <EmailIcon /> karratestates@mail.com
+              <a className={styles.contactItem} href='mailto:info@karratestates.ae'>
+                <EmailIcon /> info@karratestates.ae
               </a>
             </div>
           </div>
 
           <div className={styles.group}>
-            <Socials list={['telegram', 'whatsapp', 'viber', 'youtube']} isTransparent={true} />
+            <Socials list={['telegram', 'whatsapp', 'discord']} isTransparent={true} />
             <p className={styles.privacy}>© 2024 Karratestates. All rights reserved</p>
           </div>
         </div>

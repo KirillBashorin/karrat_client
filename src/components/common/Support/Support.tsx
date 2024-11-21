@@ -35,7 +35,7 @@ const Support: FC<SupportProps> = ({ title, text, isDark, isVector }) => {
             </Title>
             <p className={styles.text}>{text || 'Support service is available \non weekends'}</p>
             <div className={styles.buttonsWrapper}>
-              <Button className={styles.button} href={'#'}>
+              <Button className={styles.button} href={'https://wa.me/971585779091'}>
                 Ask a question
               </Button>
               <Socials className={styles.socials} list={['discord', 'telegram']} />
